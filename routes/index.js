@@ -7,16 +7,13 @@ const router = express.Router();
 require('../config/passport')(passport);
 const ac = require('../config/accesscontrol');
 
-//Models 
-/* const Product = require('../models').Product;
-const User = require('../models').User; */
 
 //Controllers
 const loginController = require('../controllers').login;
 const brandController = require('../controllers').brand;
-//const profileController = require('../controllers').profile;
+const profileController = require('../controllers').profile;
 const userController = require('../controllers').user;
-//const roleController = require('../controllers').role;
+const roleController = require('../controllers').role;
 
 //Permission Test
 const permission = ac.can('superadmin').deleteAny('user');
@@ -27,6 +24,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* Brand Register in WebPortal */
+router.post('/signup', loginController.register);
+
+/* Login at WebPortal */
+router.post('/signin', loginController.login);
+
 /* Company Router */
 router.get('/api/brand', passport.authenticate('jwt', { session: false}), brandController.list);
 router.get('/api/brand/:id', passport.authenticate('jwt', { session: false}), brandController.getById);
@@ -35,88 +38,32 @@ router.put('/api/brand/:id', passport.authenticate('jwt', { session: false}), br
 //router.delete('/api/brand/:id', passport.authenticate('jwt', { session: false}), brandController.delete);
 
 /* User Router */
-router.get('/api/user',  userController.list);
-router.get('/api/user/:id', userController.getById);
-router.post('/api/user', userController.add);
-router.put('/api/user/:id', userController.update);
-router.delete('/api/user/:id', userController.delete);
-
-/* Branch Router */
-/* router.get('/api/branch', branchController.list);
-router.get('/api/branch/:id', branchController.getById);
-router.post('/api/branch', branchController.add);
-router.put('/api/branch/:id', branchController.update);
-router.delete('/api/branch/:id', branchController.delete); */
+router.get('/api/user', passport.authenticate('jwt', { session: false}), userController.list);
+router.get('/api/user/:id', passport.authenticate('jwt', { session: false}), userController.getById);
+router.post('/api/user', passport.authenticate('jwt', { session: false}), userController.add);
+router.put('/api/user/:id', passport.authenticate('jwt', { session: false}), userController.update);
+router.delete('/api/user/:id', passport.authenticate('jwt', { session: false}), userController.delete);
 
 /* Profile Router */
-/* router.get('/api/profile', profileController.list);
-router.get('/api/profile/:id', profileController.getById);
-router.post('/api/profile', profileController.add);
-router.put('/api/profile/:id', profileController.update);
-router.delete('/api/profile/:id', profileController.delete); */
+router.get('/api/profile', passport.authenticate('jwt', { session: false}), profileController.list);
+router.get('/api/profile/:id', passport.authenticate('jwt', { session: false}), profileController.getById);
+//router.post('/api/profile', passport.authenticate('jwt', { session: false}), profileController.add);
+router.put('/api/profile/:id', passport.authenticate('jwt', { session: false}), profileController.update);
+router.delete('/api/profile/:id', passport.authenticate('jwt', { session: false}), profileController.delete);
 
 /* User Role */
-/* router.get('/api/role', roleController.list);
-router.get('/api/role/:id', roleController.getById);
-router.post('/api/role', roleController.add);
-router.put('/api/role/:id', roleController.update);
-router.delete('/api/role/:id', roleController.delete); */
+router.get('/api/role', passport.authenticate('jwt', { session: false}), roleController.list);
+router.get('/api/role/:id', passport.authenticate('jwt', { session: false}), roleController.getById);
+router.post('/api/role', passport.authenticate('jwt', { session: false}), roleController.add);
+router.put('/api/role/:id', passport.authenticate('jwt', { session: false}), roleController.update);
+router.delete('/api/role/:id', passport.authenticate('jwt', { session: false}), roleController.delete);
 
 /* Advance Router */
 /* router.post('/api/role/add_user', roleController.addUser);
 router.post('/api/company/add_with_branches', companyController.addWithBranches); */
 
 
-//signup
-router.post('/signup', loginController.register);
-/* router.post('/signup', function(req, res) {
-  if (!req.body.username || !req.body.password) {
-    res.status(400).send({msg: 'Please pass username and password.'})
-  } else {
-    User
-      .create({
-        username: req.body.username,
-        password: req.body.password
-      })
-      .then((user) => res.status(201).send(user))
-      .catch((error) => {
-        console.log(error);
-        res.status(400).send(error);
-      });
-  }
-}); */
-
-//signin
-router.post('/signin', loginController.login);
-/* router.post('/signin', function(req, res) {
-  User
-      .findOne({
-        where: {
-          username: req.body.username
-        }
-      })
-      .then((user) => {
-        if (!user) {
-          return res.status(401).send({
-            message: 'Authentication failed. User not found.',
-          });
-        }
-        user.comparePassword(req.body.password, (err, isMatch) => {
-          if(isMatch && !err) {
-            
-            var token = jwt.sign(JSON.parse(JSON.stringify(user)), 'nodeauthsecret', {expiresIn: 86400 * 30});
-            jwt.verify(token, 'nodeauthsecret', function(err, data){
-              console.log(err, data);
-            })
-            res.json({success: true, token: 'JWT ' + token});
-          } else {
-            res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
-          }
-        })
-      })
-      .catch((error) => res.status(400).send(error));
-}); */
-
+/* 
 
 router.get('/product', passport.authenticate('jwt', { session: false}), function(req, res) {
   var token = getToken(req.headers);
@@ -160,6 +107,6 @@ getToken = function (headers) {
   } else {
     return null;
   }
-};
+}; */
 
 module.exports = router;

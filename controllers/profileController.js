@@ -16,7 +16,7 @@ module.exports = {
 
   getById(req, res) {
     return Profile
-      .findById(req.params.id, {
+      .findByPk(req.params.id, {
         include: [{
           model: User,
           as: 'user'
@@ -33,7 +33,7 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
 
-  add(req, res) {
+ /*  add(req, res) {
     return Profile
       .create({
         user_id: req.body.user_id,
@@ -44,11 +44,11 @@ module.exports = {
       })
       .then((profile) => res.status(201).send(profile))
       .catch((error) => res.status(400).send(error));
-  },
+  }, */
 
   update(req, res) {
     return Profile
-      .findById(req.params.id, {
+      .findByPk(req.params.id, {
         include: [{
           model: User,
           as: 'user'
@@ -62,13 +62,17 @@ module.exports = {
         }
         return profile
           .update({
-            user_id: req.body.user_id || classroom.user_id,
-            fullname: req.body.fullname || classroom.fullname,
-            birthdate: req.body.birthdate || classroom.birthdate,
-            gender: req.body.gender || classroom.gender,
-            position: req.body.position || classroom.position,
+            user_id: req.body.user_id || profile.user_id,
+            fullname: req.body.fullname || profile.fullname,
+            birthdate: req.body.birthdate || profile.birthdate,
+            gender: req.body.gender || profile.gender,
+            position: req.body.position || profile.position,
+            phone: req.body.phone || profile.phone,
+            email: req.body.email || profile.email,
+            profile_pic: req.body.profile_pic || profile.profile_pic,
+            address: req.body.position || profile.address
           })
-          .then(() => res.status(200).send(profile))
+          .then((profile) => res.status(200).send(profile))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
@@ -76,7 +80,7 @@ module.exports = {
 
   delete(req, res) {
     return Profile
-      .findById(req.params.id)
+      .findByPk(req.params.id)
       .then(profile => {
         if (!profile) {
           return res.status(400).send({

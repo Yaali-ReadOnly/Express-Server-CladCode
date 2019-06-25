@@ -1,7 +1,7 @@
 const login = require('./loginController');
 const brand = require('./brandController');
-const profile = require('./profile');
-const role = require('./role');
+const profile = require('./profileController');
+const role = require('./roleController');
 const user = require('./userController');
 
 
