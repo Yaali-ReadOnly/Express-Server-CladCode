@@ -1,7 +1,7 @@
-const User = require("../models").User;
-const Profile = require("../models").Profile;
-const Role = require("../models").Role;
-const Brand = require("../models").Brand;
+const User = require("../../models").User;
+const Profile = require("../../models").Profile;
+const Role = require("../../models").Role;
+const Brand = require("../../models").Brand;
 
 module.exports = {
   list(req, res) {

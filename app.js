@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -10,11 +11,13 @@ var usersRouter = require('./routes/users');
 // Setting up port
 var PORT = process.env.PORT || 8080;
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+/* app.use(session({secret: 'testkey'})); */
 
 app.use(logger('dev'));
 app.use(express.json());

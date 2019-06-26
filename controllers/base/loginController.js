@@ -1,10 +1,10 @@
-const Brand = require("../models").Brand;
-const User = require("../models").User;
-const Profile = require("../models").Profile;
-const Role = require("../models").Role;
+const Brand = require("../../models").Brand;
+const User = require("../../models").User;
+const Profile = require("../../models").Profile;
+const Role = require("../../models").Role;
 
 const jwt = require("jsonwebtoken");
-const ac = require("../config/accesscontrol");
+const ac = require("../../config/accesscontrol");
 
 module.exports = {
   register(req, res) {

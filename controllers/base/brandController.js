@@ -1,9 +1,9 @@
-const Brand = require("../models").Brand;
-const User = require("../models").User;
-const Role = require("../models").Role;
-const Profile = require("../models").Profile;
+const Brand = require("../../models").Brand;
+const User = require("../../models").User;
+const Role = require("../../models").Role;
+const Profile = require("../../models").Profile;
 
-const ac = require("../config/accesscontrol");
+const ac = require("../../config/accesscontrol");
 
 module.exports = {
   list(req, res) {

@@ -1,8 +1,8 @@
-const login = require('./loginController');
-const brand = require('./brandController');
-const profile = require('./profileController');
-const role = require('./roleController');
-const user = require('./userController');
+const login = require('./base/loginController');
+const brand = require('./base/brandController');
+const profile = require('./base/profileController');
+const role = require('./base/roleController');
+const user = require('./base/userController');
 
 
 module.exports = {
