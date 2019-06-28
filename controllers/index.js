@@ -6,6 +6,7 @@ const user = require('./base/userController');
 
 const category = require('./category/categoryController');
 
+const style = require('./style/styleController');
 
 
 module.exports = {
@@ -14,5 +15,6 @@ module.exports = {
   profile,
   role,
   user,
-  category
+  category,
+  style
 };

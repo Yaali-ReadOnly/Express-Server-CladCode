@@ -1,0 +1,16 @@
+{
+    "washcares": [
+      {
+        "wc_name": "Hand Wash"
+      },
+      {
+        "wc_name": "Hot Water Wash"
+      },
+      {
+        "wc_name": "Cool Water Wash"
+      },
+      {
+        "wc_name": "Hand Wash or Cool Warm Wash"
+      }
+    ]
+  }

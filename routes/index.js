@@ -17,6 +17,8 @@ const roleController = require('../controllers').role;
 
 const categoryController = require('../controllers').category;
 
+const styleController = require('../controllers').style;
+
 //Permission Test
 const permission = ac.can('superadmin').deleteAny('user');
 //console.log("permission =", permission.granted);
@@ -65,7 +67,7 @@ router.delete('/api/role/:id', passport.authenticate('jwt', { session: false}), 
 router.post('/api/company/add_with_branches', companyController.addWithBranches); */
 
 
-/* User Role */
+/* Categories */
 router.get('/api/categories', passport.authenticate('jwt', { session: false}), categoryController.list);
 router.get('/api/categories/main', passport.authenticate('jwt', { session: false}), categoryController.getCategoryLevel);
 router.get('/api/categories/:id', passport.authenticate('jwt', { session: false}), categoryController.getById);
@@ -73,7 +75,10 @@ router.get('/api/categories/:id', passport.authenticate('jwt', { session: false}
 router.put('/api/categories/:id', passport.authenticate('jwt', { session: false}), categoryController.update);
 router.delete('/api/categories/:id', passport.authenticate('jwt', { session: false}), categoryController.delete); */
 
-
+/* Brand Styles */
+router.get('/api/style', passport.authenticate('jwt', { session: false}), styleController.list);
+router.get('/api/style/:id', passport.authenticate('jwt', { session: false}), styleController.getById);
+router.post('/api/style', passport.authenticate('jwt', { session: false}), styleController.add);
 
 
 /* 
