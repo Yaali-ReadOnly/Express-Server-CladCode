@@ -8,6 +8,26 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Category.associate = function(models) {
     // associations can be defined here
+    Category.belongsTo(models.ParentCategory, {
+      foreignKey: 'parent_id',
+      as: 'parent_category'
+    });
+
+    Category.belongsTo(models.GroupCategory, {
+      foreignKey: 'group_id',
+      as: 'group_category'
+    });
+
+    Category.belongsTo(models.SpecHeader, {
+      foreignKey: 'header_id',
+      as: 'spec_header'
+    });
+
+    Category.hasMany(models.Cat_Attribute, {
+      foreignKey: 'category_id',
+      as: 'attributes'
+    });
+
   };
   return Category;
 };

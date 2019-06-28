@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Cat_Attribute.associate = function(models) {
     // associations can be defined here
+    Cat_Attribute.hasMany(models.Cat_Option, {
+      foreignKey: 'attribute_id',
+      as: 'options'
+    });
   };
   return Cat_Attribute;
 };

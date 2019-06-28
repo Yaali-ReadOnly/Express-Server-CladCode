@@ -23,20 +23,19 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE
         }
-      })
-      .then(() => {
-        return queryInterface.bulkInsert("Roles", [
-          {
-            role_name: "superadmin",
+      }).then(() => {
+       /*  const DefaultRoles = require('../data/roles/roles.json').roles;
+        let rolesArray = [];
+        
+        DefaultRoles.forEach((role) => {
+          rolesArray.push({
+            role_name: role['role_name'],
             createdAt: new Date(),
             updatedAt: new Date()
-          },
-          {
-            role_name: "admin",
-            createdAt: new Date(),
-            updatedAt: new Date()
-          }
-        ]);
+          })
+        });
+
+        return queryInterface.bulkInsert('Roles', rolesArray); */
       });
   },
   down: (queryInterface, Sequelize) => {

@@ -1,0 +1,154 @@
+{
+  "categories": [
+    {
+      "category_name": "Casual Shirts",
+      "parent_id": 1,
+      "header_id": 1,
+      "category_group": {
+        "group_name": "Topwear"
+      },
+      "attributes": [
+        {
+          "attribute_name": "Fit",
+          "spec_variation": true,
+          "spec_image": true,
+          "variant_variation": true,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Boxy",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Regular Fit",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Skinny Fit",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Slim Fit",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Tailored Fit",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Sleeve Length",
+          "spec_variation": true,
+          "spec_image": true,
+          "variant_variation": true,
+          "variant_image": true,
+          "is_editable": false,
+          "options": [
+            {
+              "option_name": "Long Sleeves",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Short Sleeves",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Sleeveless",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Three-Quarter Sleeves",
+              "is_sub_value": false
+            }
+          ]
+        }
+      ],
+      "feedbackpoints": [
+        "Collar Top",
+        "Neck Circum",
+        "Chest",
+        "Centre Back Length",
+        "Shoulder Width",
+        "Long Sleeve Length",
+        "Short Sleeve Length"
+      ]
+    },
+    {
+      "category_name": "Formal Shirts",
+      "parent_id": 1,
+      "header_id": 1,
+      "category_group": {
+        "group_name": "Office Wear"
+      },
+      "attributes": [
+        {
+          "attribute_name": "Fit",
+          "spec_variation": true,
+          "spec_image": true,
+          "variant_variation": true,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Boxy",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Regular Fit",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Skinny Fit",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Slim Fit",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Tailored Fit",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Sleeve Length",
+          "spec_variation": true,
+          "spec_image": true,
+          "variant_variation": true,
+          "variant_image": true,
+          "is_editable": false,
+          "options": [
+            {
+              "option_name": "Long Sleeves",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Short Sleeves",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Sleeveless",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Three-Quarter Sleeves",
+              "is_sub_value": false
+            }
+          ]
+        }
+      ],
+      "feedbackpoints": [
+        "Collar Top",
+        "Neck Circum",
+        "Chest",
+        "Centre Back Length",
+        "Shoulder Width",
+        "Long Sleeve Length",
+        "Short Sleeve Length"
+      ]
+    }
+  ]
+}

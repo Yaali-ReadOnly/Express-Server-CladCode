@@ -4,6 +4,9 @@ const profile = require('./base/profileController');
 const role = require('./base/roleController');
 const user = require('./base/userController');
 
+const category = require('./category/categoryController');
+
+
 
 module.exports = {
   brand,
@@ -11,4 +14,5 @@ module.exports = {
   profile,
   role,
   user,
+  category
 };

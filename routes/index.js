@@ -15,6 +15,8 @@ const profileController = require('../controllers').profile;
 const userController = require('../controllers').user;
 const roleController = require('../controllers').role;
 
+const categoryController = require('../controllers').category;
+
 //Permission Test
 const permission = ac.can('superadmin').deleteAny('user');
 //console.log("permission =", permission.granted);
@@ -61,6 +63,17 @@ router.delete('/api/role/:id', passport.authenticate('jwt', { session: false}), 
 /* Advance Router */
 /* router.post('/api/role/add_user', roleController.addUser);
 router.post('/api/company/add_with_branches', companyController.addWithBranches); */
+
+
+/* User Role */
+router.get('/api/categories', passport.authenticate('jwt', { session: false}), categoryController.list);
+router.get('/api/categories/main', passport.authenticate('jwt', { session: false}), categoryController.getCategoryLevel);
+router.get('/api/categories/:id', passport.authenticate('jwt', { session: false}), categoryController.getById);
+/* router.post('/api/categories', passport.authenticate('jwt', { session: false}), categoryController.add);
+router.put('/api/categories/:id', passport.authenticate('jwt', { session: false}), categoryController.update);
+router.delete('/api/categories/:id', passport.authenticate('jwt', { session: false}), categoryController.delete); */
+
+
 
 
 /* 

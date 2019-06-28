@@ -3,6 +3,8 @@ const User = require("../../models").User;
 const Profile = require("../../models").Profile;
 const Role = require("../../models").Role;
 
+/* var models = require('../../models'); */
+
 const jwt = require("jsonwebtoken");
 const ac = require("../../config/accesscontrol");
 
