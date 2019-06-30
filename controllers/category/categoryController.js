@@ -58,7 +58,8 @@ module.exports = {
   },
 
   getById(req, res) {
-    return Category.findByPk(req.params.id, {
+    return Promise.all([
+      Category.findByPk(req.params.id, {
         include: [
           {
             model: ParentCategory,
@@ -67,10 +68,6 @@ module.exports = {
           {
             model: GroupCategory,
             as: "group_category"
-          },
-          {
-            model: SpecHeader,
-            as: "spec_header"
           },
           {
             model: Cat_Attribute,
@@ -83,15 +80,20 @@ module.exports = {
             ]
           }
         ]
-      })
+      }),
+      SpecHeader.findAll({})
+    ])
       .then(category => {
         if (!category) {
           return res.status(404).send({
             message: "Brand Not Found"
           });
         }
-        return res.status(200).send(category);
+        let obj ={};
+            obj['category']= category[0];
+            obj['spec_header']= category[1];
+        return res.status(200).send(obj);
       })
       .catch(error => res.status(400).send(error));
-  },
+  }
 };
