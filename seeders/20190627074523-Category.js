@@ -6,7 +6,6 @@ module.exports = {
       .categories;
 
     for (const category of baseCategories) {
-      
       //Create Category Group
       let groupData = [
         {
@@ -47,6 +46,24 @@ module.exports = {
       const categoryId = categoryResponse[0].id;
 
       if (categoryId) {
+        let fbpArray = [];
+        //Create Category feedbackpoints
+        for (const fbp of category.feedbackpoints) {
+          fbpArray.push({
+            category_id: categoryId,
+            fb_point: fbp,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          });
+        }
+
+        const fbResponse = await queryInterface.bulkInsert(
+          "FeebackPoints",
+          fbpArray,
+          { returning: true }
+        );
+
+        console.log("feedbcakpoints = ", fbResponse);
 
         //Create Category Attribute
         for (const attribute of category.attributes) {
@@ -92,6 +109,30 @@ module.exports = {
               );
               //console.log("updated Option id", optionResponse[0].id);
               const optionId = optionResponse[0].id;
+
+              if (attribute["spec_variation"] && optionId) {
+                let fbMapArray = [];
+                for (const fb of fbResponse) {
+                  fbMapArray.push({
+                    fb_id: fb.id,
+                    option_id: optionId,
+                    is_visible: attribute["spec_variation"],
+                    createdAt: new Date(),
+                    updatedAt: new Date()
+                  });
+                }
+
+                const mapResponse = await queryInterface.bulkInsert(
+                  "FB_Option_Maps",
+                  fbMapArray,
+                  { returning: true }
+                );
+
+                console.log(mapResponse);
+
+
+
+              }
             }
           }
         }

@@ -4,6 +4,8 @@ const GroupCategory = require("../../models").GroupCategory;
 const Cat_Attribute = require("../../models").Cat_Attribute;
 const Cat_Option = require("../../models").Cat_Option;
 const SpecHeader = require("../../models").SpecHeader;
+const FeebackPoint = require("../../models").FeebackPoint;
+const FB_Option_Map = require("../../models").FB_Option_Map;
 
 module.exports = {
   list(req, res) {
@@ -78,7 +80,17 @@ module.exports = {
                 as: "options"
               }
             ]
-          }
+          },
+          {
+            model: FeebackPoint,
+            as: "feedbackpoints",
+            include: [
+              {
+                model: FB_Option_Map,
+                as: "fb_maps"
+              }
+            ]
+          },
         ]
       }),
       SpecHeader.findAll({})

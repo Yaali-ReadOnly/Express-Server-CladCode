@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       as: 'spec_header'
     });
 
+    Category.hasMany(models.FeebackPoint, {
+      foreignKey: 'category_id',
+      as: 'feedbackpoints'
+    });
+
     Category.hasMany(models.Cat_Attribute, {
       foreignKey: 'category_id',
       as: 'attributes'
