@@ -63,6 +63,95 @@
               "is_sub_value": false
             }
           ]
+        },
+        {
+          "attribute_name": "Color",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": true,
+          "variant_image": true,
+          "is_editable": true,
+          "options": [
+            
+          ]
+        },
+        {
+          "attribute_name": "Size",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": true,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+          {
+            "option_name": "S",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "M",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "L",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "XL",
+            "is_sub_value": false
+          }
+          ]
+        },
+        {
+          "attribute_name": "Pattern",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+          {
+            "option_name": "Checked",
+            "is_sub_value": true
+          },
+          {
+            "option_name": "Faded",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Printed",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Striped",
+            "is_sub_value": true
+          }
+          ]
+        },
+        {
+          "attribute_name": "Fabric",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+          {
+            "option_name": "Cotton",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Linen",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Lyocell",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Modal",
+            "is_sub_value": false
+          }
+          ]
         }
       ],
       "feedbackpoints": [
@@ -137,6 +226,95 @@
               "option_name": "Three-Quarter Sleeves",
               "is_sub_value": false
             }
+          ]
+        },
+        {
+          "attribute_name": "Color",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": true,
+          "variant_image": true,
+          "is_editable": true,
+          "options": [
+            
+          ]
+        },
+        {
+          "attribute_name": "Size",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": true,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+          {
+            "option_name": "S",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "M",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "L",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "XL",
+            "is_sub_value": false
+          }
+          ]
+        },
+        {
+          "attribute_name": "Pattern",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+          {
+            "option_name": "Checked",
+            "is_sub_value": true
+          },
+          {
+            "option_name": "Faded",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Printed",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Striped",
+            "is_sub_value": true
+          }
+          ]
+        },
+        {
+          "attribute_name": "Fabric",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+          {
+            "option_name": "Cotton",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Linen",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Lyocell",
+            "is_sub_value": false
+          },
+          {
+            "option_name": "Modal",
+            "is_sub_value": false
+          }
           ]
         }
       ],
