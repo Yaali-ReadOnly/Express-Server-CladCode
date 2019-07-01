@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "jai",
-    "password": "terminal16",
+    "username": "prashanth",
+    "password": "terminal1",
     "database": "cladcode_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
