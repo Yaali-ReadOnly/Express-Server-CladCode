@@ -19,6 +19,8 @@ const categoryController = require('../controllers').category;
 
 const styleController = require('../controllers').style;
 
+const adminController = require('../controllers').admin;
+
 //Permission Test
 const permission = ac.can('superadmin').deleteAny('user');
 //console.log("permission =", permission.granted);

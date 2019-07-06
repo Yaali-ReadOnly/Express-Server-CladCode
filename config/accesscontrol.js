@@ -25,9 +25,27 @@ const superadmin = {
     }
 }
 
+const grandadmin = {
+    user: {
+        ...superadmin.user,
+        ...admin.user,
+        'update:any': ['*'],
+        'delete:any': ['*']
+        }
+    ,
+    role: {
+        ...superadmin.role,
+        ...admin.role,
+        'update:any': ['*'],
+        'delete:any': ['*']
+    }
+}
+
+
 const grantsObject = {
     admin,
     superadmin,
+    grandadmin
 };
 
 
