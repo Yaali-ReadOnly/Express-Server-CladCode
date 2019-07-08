@@ -11,9 +11,6 @@ module.exports = {
       brand_id: {
         type: Sequelize.INTEGER
       },
-      variant_id: {
-        type: Sequelize.INTEGER
-      },
       style_id: {
         type: Sequelize.INTEGER
       },
@@ -22,6 +19,9 @@ module.exports = {
       },
       fb_id: {
         type: Sequelize.INTEGER
+      },
+      fb_name: {
+        type: Sequelize.STRING
       },
       option_id: {
         type: Sequelize.INTEGER

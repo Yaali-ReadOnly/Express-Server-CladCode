@@ -20,6 +20,9 @@ module.exports = {
       attribute_name: {
         type: Sequelize.STRING
       },
+      attribute_type: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -11,19 +11,19 @@ module.exports = {
       brand_id: {
         type: Sequelize.INTEGER
       },
-      variant_id: {
-        type: Sequelize.INTEGER
-      },
       style_id: {
         type: Sequelize.INTEGER
+      },
+      gradient_name: {
+        type: Sequelize.STRING
       },
       category_id: {
         type: Sequelize.INTEGER
       },
-      spec_combination: {
+      combination_data: {
         type: Sequelize.JSON
       },
-      header: {
+      col_header: {
         type: Sequelize.JSON
       },
       createdAt: {

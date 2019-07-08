@@ -20,9 +20,6 @@ module.exports = {
       img_id: {
         type: Sequelize.INTEGER
       },
-      sc_id: {
-        type: Sequelize.INTEGER
-      },
       variant_name: {
         type: Sequelize.STRING
       },

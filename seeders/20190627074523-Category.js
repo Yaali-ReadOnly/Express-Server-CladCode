@@ -63,7 +63,7 @@ module.exports = {
           { returning: true }
         );
 
-        console.log("feedbcakpoints = ", fbResponse);
+        //console.log("feedbcakpoints = ", fbResponse);
 
         //Create Category Attribute
         for (const attribute of category.attributes) {
@@ -128,10 +128,7 @@ module.exports = {
                   { returning: true }
                 );
 
-                console.log(mapResponse);
-
-
-
+                //console.log(mapResponse);
               }
             }
           }

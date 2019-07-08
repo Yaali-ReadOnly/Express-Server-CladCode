@@ -20,14 +20,20 @@ module.exports = {
       washcare_id: {
         type: Sequelize.INTEGER
       },
-      creator_user_id: {
+      spec_header_id: {
+        type: Sequelize.INTEGER
+      },
+      created_by: {
         type: Sequelize.INTEGER
       },
       style_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       style_code: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       season: {
         type: Sequelize.STRING
@@ -42,9 +48,6 @@ module.exports = {
         type: Sequelize.JSON
       },
       variant_combinations: {
-        type: Sequelize.JSON
-      },
-      spec_header: {
         type: Sequelize.JSON
       },
       createdAt: {

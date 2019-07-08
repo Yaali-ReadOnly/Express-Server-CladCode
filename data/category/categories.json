@@ -72,7 +72,14 @@
           "variant_image": true,
           "is_editable": true,
           "options": [
-            
+            {
+              "option_name": "White",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Black",
+              "is_sub_value": false
+            }
           ]
         },
         {
@@ -83,22 +90,22 @@
           "variant_image": false,
           "is_editable": true,
           "options": [
-          {
-            "option_name": "S",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "M",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "L",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "XL",
-            "is_sub_value": false
-          }
+            {
+              "option_name": "S",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "M",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "L",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "XL",
+              "is_sub_value": false
+            }
           ]
         },
         {
@@ -109,22 +116,22 @@
           "variant_image": false,
           "is_editable": true,
           "options": [
-          {
-            "option_name": "Checked",
-            "is_sub_value": true
-          },
-          {
-            "option_name": "Faded",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Printed",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Striped",
-            "is_sub_value": true
-          }
+            {
+              "option_name": "Checked",
+              "is_sub_value": true
+            },
+            {
+              "option_name": "Faded",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Printed",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Striped",
+              "is_sub_value": true
+            }
           ]
         },
         {
@@ -135,24 +142,195 @@
           "variant_image": false,
           "is_editable": true,
           "options": [
-          {
-            "option_name": "Cotton",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Linen",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Lyocell",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Modal",
-            "is_sub_value": false
-          }
+            {
+              "option_name": "Cotton",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Linen",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Lyocell",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Modal",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Collar",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Built-Up Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Button-Down Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Club Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Collarless",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Cutaway Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Hood",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Occasion",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Casual",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Formal",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Party",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Semiformal",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Weave Pattern",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Chambray",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Corduroy",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Denim",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Knitted",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Length",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Crop",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Longline",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Regular",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Hemline",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Asymmetric",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Curved",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Straight",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Print Type",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Abstract",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Animal",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Bengal Stripes",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Stitch",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Made to Measure",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Ready to Wear",
+              "is_sub_value": false
+            }
           ]
         }
+        
       ],
       "feedbackpoints": [
         "Collar Top",
@@ -236,7 +414,14 @@
           "variant_image": true,
           "is_editable": true,
           "options": [
-            
+            {
+              "option_name": "White",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Black",
+              "is_sub_value": false
+            }
           ]
         },
         {
@@ -247,22 +432,22 @@
           "variant_image": false,
           "is_editable": true,
           "options": [
-          {
-            "option_name": "S",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "M",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "L",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "XL",
-            "is_sub_value": false
-          }
+            {
+              "option_name": "S",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "M",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "L",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "XL",
+              "is_sub_value": false
+            }
           ]
         },
         {
@@ -273,22 +458,22 @@
           "variant_image": false,
           "is_editable": true,
           "options": [
-          {
-            "option_name": "Checked",
-            "is_sub_value": true
-          },
-          {
-            "option_name": "Faded",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Printed",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Striped",
-            "is_sub_value": true
-          }
+            {
+              "option_name": "Checked",
+              "is_sub_value": true
+            },
+            {
+              "option_name": "Faded",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Printed",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Striped",
+              "is_sub_value": true
+            }
           ]
         },
         {
@@ -299,22 +484,192 @@
           "variant_image": false,
           "is_editable": true,
           "options": [
-          {
-            "option_name": "Cotton",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Linen",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Lyocell",
-            "is_sub_value": false
-          },
-          {
-            "option_name": "Modal",
-            "is_sub_value": false
-          }
+            {
+              "option_name": "Cotton",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Linen",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Lyocell",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Modal",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Collar",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Built-Up Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Button-Down Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Club Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Collarless",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Cutaway Collar",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Hood",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Occasion",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Casual",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Formal",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Party",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Semiformal",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Weave Pattern",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Chambray",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Corduroy",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Denim",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Knitted",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Length",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Crop",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Longline",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Regular",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Hemline",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Asymmetric",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Curved",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Straight",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Print Type",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Abstract",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Animal",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Bengal Stripes",
+              "is_sub_value": false
+            }
+          ]
+        },
+        {
+          "attribute_name": "Stitch",
+          "spec_variation": false,
+          "spec_image": false,
+          "variant_variation": false,
+          "variant_image": false,
+          "is_editable": true,
+          "options": [
+            {
+              "option_name": "Made to Measure",
+              "is_sub_value": false
+            },
+            {
+              "option_name": "Ready to Wear",
+              "is_sub_value": false
+            }
           ]
         }
       ],

@@ -4,6 +4,8 @@ const session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+var _ = require('lodash');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,8 +22,8 @@ app.set('view engine', 'ejs');
 /* app.use(session({secret: 'testkey'})); */
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

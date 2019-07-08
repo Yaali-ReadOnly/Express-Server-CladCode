@@ -11,17 +11,17 @@ module.exports = {
       brand_id: {
         type: Sequelize.INTEGER
       },
-      style_id: {
-        type: Sequelize.INTEGER
-      },
       sa_id: {
         type: Sequelize.INTEGER
       },
       option_id: {
         type: Sequelize.INTEGER
       },
-      option_values: {
-        type: Sequelize.JSON
+      option_name: {
+        type: Sequelize.STRING
+      },
+      is_sub_value: {
+        type: Sequelize.BOOLEAN
       },
       sub_values: {
         type: Sequelize.JSON
