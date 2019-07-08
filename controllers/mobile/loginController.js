@@ -9,6 +9,8 @@ module.exports = {
             {
                 username: req.body.username,
                 password: req.body.password,
+                register_source: req.body.register_source,
+                user_status: req.body.user_status,
                 customerProfile: req.body.customer_profiles
             },
             {
@@ -22,7 +24,7 @@ module.exports = {
         )
             .then(customer => res.status(200).send(customer))
             .catch(error => {
-                console.log(error.errors[0].message);
+                console.log(error);
 
                 res
                   .status(400)

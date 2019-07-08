@@ -99,7 +99,8 @@ module.exports = {
           offset = limit * (page - 1);
           Customers
             .findAll({
-              attributes: ["id", "username", "createdAt", "updatedAt"],
+              //attributes: ["id", "username", "createdAt", "updatedAt"],
+              attributes: { exclude: ['password'] },
               limit: limit,
               offset: offset,
               $sort: { id: 1 },
