@@ -1,6 +1,9 @@
 {
     "roles": [
       {
+        "role_name": "grandadmin"
+      },
+      {
         "role_name": "superadmin"
       },
       {

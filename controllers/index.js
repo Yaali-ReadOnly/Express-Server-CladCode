@@ -8,6 +8,9 @@ const category = require('./category/categoryController');
 
 const style = require('./style/styleController');
 
+const admin = require('./admin/adminController');
+const customer = require('./mobile/customerController');
+const custlogin = require('./mobile/loginController');
 
 module.exports = {
   brand,
@@ -16,5 +19,8 @@ module.exports = {
   role,
   user,
   category,
-  style
+  style,
+  admin,
+  customer,
+  custlogin
 };
