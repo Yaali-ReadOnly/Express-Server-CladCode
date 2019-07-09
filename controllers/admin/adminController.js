@@ -212,6 +212,36 @@ module.exports = {
             res.status(500).send("Internal Server Error");
           });
       }
+    },
+
+    getbrandById(req, res) {
+      return Brand.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            as: "users",
+            include: [
+              {
+                model: Role,
+                as: "role"
+              },
+              {
+                model: Profile,
+                as: "profile"
+              }
+            ]
+          }
+        ]
+      })
+        .then(brand => {
+          if (!brand) {
+            return res.status(404).send({
+              message: "Brand Not Found"
+            });
+          }
+          return res.status(200).send(brand);
+        })
+        .catch(error => res.status(400).send(error));
     }
 };
 
