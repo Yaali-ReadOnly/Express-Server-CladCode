@@ -41,7 +41,7 @@ router.get('/api/dashboard', passport.authenticate('jwt', { session: false}), ad
 
 /* Company Router */
 router.get('/api/brand', passport.authenticate('jwt', { session: false}), adminController.getbrandList);
-router.get('/api/brand/:id', passport.authenticate('jwt', { session: false}), brandController.getById);
+router.get('/api/brand/:id', passport.authenticate('jwt', { session: false}), adminController.getbrandById);
 
 /* User Router */
 router.get('/api/user', passport.authenticate('jwt', { session: false}), userController.list);
