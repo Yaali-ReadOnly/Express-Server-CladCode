@@ -11,7 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var mobileRouter = require('./routes/mobile');
-
+// var winston = require('./winston').winston;
 // Setting up port
 var PORT = process.env.PORT || 8080;
 
@@ -22,7 +22,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /* app.use(session({secret: 'testkey'})); */
-
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));

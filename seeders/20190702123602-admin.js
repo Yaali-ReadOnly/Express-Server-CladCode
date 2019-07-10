@@ -8,6 +8,8 @@ module.exports = {
     let req={
       "brand_name": "CladCode",
       "email": "admin@cladcode.com",
+      "phone":"9176204465",
+      "address":{"street":"1st complex,velachery","city":"chennai","state":"tamilnadu","zipcode":"600041","country":"india"},
       "users": [
           {
               "username": "admin@cladcode.com",
@@ -24,6 +26,8 @@ module.exports = {
         {
           brand_name: req.brand_name,
           email: req.email,
+          phone: req.phone,
+          address: req.address,
           users: req.users,
           profile: req.users.profile
         },

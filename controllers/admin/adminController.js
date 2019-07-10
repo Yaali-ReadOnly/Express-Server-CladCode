@@ -39,9 +39,7 @@ module.exports = {
               "nodeauthsecret",
               { expiresIn: 86400 * 30 }
             );
-            jwt.verify(token, "nodeauthsecret", function(err, data) {
-              //console.log(err, data);
-            });
+            jwt.verify(token, "nodeauthsecret", function(err, data) { });
             res.json({ success: true, token: "JWT " + token });
           } else {
             res.status(401).send({
@@ -56,6 +54,10 @@ module.exports = {
     {
       res.json({ success: false, error: 'Authentication failed. Wrong email.' });
     }
+  },
+
+  getdashboardData(req,res){
+    res.status(200).send("No data available");
   },
 
   //get all customers list with & without pagination request
@@ -123,24 +125,73 @@ module.exports = {
     }
   },
 
-  //get user configuration
-    getuserConfig(req, res){
-        console.log('server hits - ' ,req.user.brand_id);
+  //get admin configuration
+    getadminCompanyDetail(req, res){
+        //console.log('server hits - ' ,req.user.brand_id);
         Brand.findByPk(req.user.brand_id, {
-           
+              include: [
+                {
+                  model: User,
+                  as: "users",
+                  include: [
+                    {
+                      model: Role,
+                      as: "role"
+                    },
+                    {
+                      model: Profile,
+                      as: "profile"
+                    }
+                  ]
+                }
+              ]
           })
-          .then(profile => {
-            console.log('success- ' ,req.user.brand_id);
-            if (!profile) {
+          .then(brand => {
+            //console.log('success- ' ,req.user.brand_id);
+            //console.log('full values', brand);
+            if (!brand) {
               return res.status(404).send({
                 message: "Brand Not Found"
               });
             }
-
-            return res.status(200).send({ success: true, configData:{ brands: profile.dataValues }});
+            //return res.status(200).send({ success: true,company_detail:{brand_name: brand.dataValues.brand_name ,address: brand.users[0].profile }});
+            return res.status(200).send({ success: true,company_detail:{brand_name: brand.dataValues.brand_name,brand_id:brand.id, phone:brand.phone,address: brand.address}});
           })
           .catch(error => 
             res.status(400).send(error));
+    },
+
+    //get admin profile details
+    getadminProfileDetail(req, res){
+      console.log('server hits - ' ,req.user.brand_id);
+      Brand.findByPk(req.user.brand_id, {
+            include: [
+              {
+                model: User,
+                as: "users",
+                include: [
+                  {
+                    model: Profile,
+                    as: "profile"
+                  }
+                ]
+              }
+            ]
+        })
+        .then(profile => {
+          console.log('success- ' ,req.user.user_id);
+          console.log('full values', profile);
+          if (!profile) {
+            return res.status(404).send({
+              message: "profile Not Found"
+            });
+          }
+
+          //return res.status(200).send({ success: true,company_detail:{brand_name: profile.dataValues.brand_name,profile: profile}});
+          return res.status(200).send({ success: true,company_detail:{brand_name: profile.dataValues.brand_name,brand_id:profile.id, email:profile.email,user:profile.users[0]}});
+        })
+        .catch(error => 
+          res.status(400).send(error));
     },
 
     //get specific customer detail
