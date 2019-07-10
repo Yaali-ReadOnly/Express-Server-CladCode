@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Spec_Gradient.associate = function(models) {
     // associations can be defined here
+    Spec_Gradient.hasMany(models.Spec_Fb_Map, {
+      foreignKey: 'sg_id',
+      as: 'spec_fb_maps'
+    });
   };
   return Spec_Gradient;
 };

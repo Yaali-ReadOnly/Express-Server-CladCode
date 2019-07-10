@@ -8,14 +8,17 @@ module.exports = (sequelize, DataTypes) => {
     variant_name: DataTypes.STRING,
     sku: DataTypes.STRING,
     price: DataTypes.STRING,
-    quantity: DataTypes.INTEGER,
+    quantity: DataTypes.STRING,
     status: DataTypes.STRING,
-    public_qr_code: DataTypes.STRING,
     hex_color_id: DataTypes.STRING,
     combination_data: DataTypes.JSON
   }, {});
   Variant.associate = function(models) {
     // associations can be defined here
+    Variant.hasOne(models.Public_Code, {
+      foreignKey: 'variant_id',
+      as: 'public_code',
+    });
   };
   return Variant;
 };

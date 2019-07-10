@@ -1,12 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Spec_Measurement = sequelize.define('Spec_Measurement', {
-    brand_id: DataTypes.INTEGER,
-    style_id: DataTypes.INTEGER,
-    sg_id: DataTypes.INTEGER,
-    fb_id: DataTypes.INTEGER,
-    fb_name: DataTypes.STRING,
-    option_id: DataTypes.INTEGER,
+    s_fb_id: DataTypes.INTEGER,
+    option_name: DataTypes.STRING,
     meas_value: DataTypes.STRING
   }, {});
   Spec_Measurement.associate = function(models) {

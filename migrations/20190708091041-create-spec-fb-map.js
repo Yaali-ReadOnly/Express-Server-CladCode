@@ -1,21 +1,24 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Spec_Measurements', {
+    return queryInterface.createTable('Spec_Fb_Maps', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      s_fb_id: {
+      sg_id: {
         type: Sequelize.INTEGER
       },
-      option_name: {
+      fb_id: {
+        type: Sequelize.INTEGER
+      },
+      fb_name: {
         type: Sequelize.STRING
       },
-      meas_value: {
-        type: Sequelize.STRING
+      is_visible: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +31,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Spec_Measurements');
+    return queryInterface.dropTable('Spec_Fb_Maps');
   }
 };
