@@ -7,10 +7,24 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 
+var QRCode = require('qrcode');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var mobileRouter = require('./routes/mobile');
+
+
+ 
+/* QRCode.toDataURL('I am a pony!', function (err, url) {
+  console.log(url)
+}) */
+
+
+/* QRCode.toString('venkatesh', function (err, string) {
+  if (err) throw err
+  console.log(string)
+}) */
 
 // Setting up port
 var PORT = process.env.PORT || 8080;

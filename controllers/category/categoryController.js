@@ -98,7 +98,7 @@ module.exports = {
       .then(category => {
         if (!category) {
           return res.status(404).send({
-            message: "Brand Not Found"
+            message: "Category Not Found"
           });
         }
         let obj ={};

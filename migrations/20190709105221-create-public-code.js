@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Variants', {
+    return queryInterface.createTable('Public_Codes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,35 +11,20 @@ module.exports = {
       brand_id: {
         type: Sequelize.INTEGER
       },
-      category_id: {
+      variant_id: {
         type: Sequelize.INTEGER
       },
-      style_id: {
-        type: Sequelize.INTEGER
+      public_uuid: {
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.DataTypes.UUID,
+        defaultValue: Sequelize.literal('uuid_generate_v4()'),
       },
-      img_id: {
-        type: Sequelize.INTEGER
-      },
-      variant_name: {
-        type: Sequelize.STRING
-      },
-      sku: {
-        type: Sequelize.STRING
-      },
-      price: {
-        type: Sequelize.STRING
-      },
-      quantity: {
+      img_path: {
         type: Sequelize.STRING
       },
       status: {
         type: Sequelize.STRING
-      },
-      hex_color_id: {
-        type: Sequelize.STRING
-      },
-      combination_data: {
-        type: Sequelize.JSON
       },
       createdAt: {
         allowNull: false,
@@ -52,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Variants');
+    return queryInterface.dropTable('Public_Codes');
   }
 };

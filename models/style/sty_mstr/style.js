@@ -34,6 +34,12 @@ module.exports = (sequelize, DataTypes) => {
       as: 'spec_gradient'
     });
 
+    Style.hasMany(models.Variant, {
+      foreignKey: 'style_id',
+      as: 'variants'
+    });
+    
+
     /* Style.hasMany(models.Sty_Option, {
       foreignKey: 'style_id',
       as: 'sty_options'
