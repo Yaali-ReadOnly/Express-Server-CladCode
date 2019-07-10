@@ -9,6 +9,9 @@ var _ = require('lodash');
 
 var QRCode = require('qrcode');
 
+//for windton logger
+// var winston = require('./winston').winston;
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
@@ -36,7 +39,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /* app.use(session({secret: 'testkey'})); */
-
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));

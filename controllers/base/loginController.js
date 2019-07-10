@@ -14,7 +14,9 @@ module.exports = {
       {
         brand_name: req.body.brand_name,
         email: req.body.email,
+        address: req.body.address,
         users: req.body.users,
+        phone: req.body.phone,
         profile: req.body.users.profile
       },
       {
