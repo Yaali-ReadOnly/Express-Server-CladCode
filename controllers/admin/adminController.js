@@ -293,6 +293,27 @@ module.exports = {
           return res.status(200).send(brand);
         })
         .catch(error => res.status(400).send(error));
+    },
+
+    //update admin profile details
+    updateadminProfileDetail(req, res) {
+      return Brand.findByPk(req.params.id)
+        .then(brand => {
+          if (!brand) {
+            return res.status(404).send({
+              message: "Brand Not Found"
+            });
+          }
+          return brand
+            .update({
+              brand_name: req.body.brand_name || brand.brand_name,
+              phone: req.body.phone || brand.phone,
+              address: req.body.address || brand.address
+            })
+            .then((brand) => res.status(200).send(brand))
+            .catch(error => res.status(400).send(error));
+        })
+        .catch(error => res.status(400).send(error));
     }
 };
 

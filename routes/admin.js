@@ -36,6 +36,7 @@ router.post('/signin', adminController.login);
 /* User Config  */
 router.get('/api/usercompany', passport.authenticate('jwt', { session: false}), adminController.getadminCompanyDetail);
 router.get('/api/userprofile', passport.authenticate('jwt', { session: false}), adminController.getadminProfileDetail);
+router.post('/api/userprofile/:id', passport.authenticate('jwt', { session: false}), adminController.updateadminProfileDetail);
 
 /* dashboard */
 router.get('/api/dashboard', passport.authenticate('jwt', { session: false}), adminController.getdashboardData);
