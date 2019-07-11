@@ -1,4 +1,5 @@
 const Brand = require("../../models").Brand;
+const Style = require("../../models").Style;
 const User = require("../../models").User;
 const Profile = require("../../models").Profile;
 const Role = require("../../models").Role;
@@ -7,6 +8,8 @@ const customerProfile = require("../../models").customerProfile;
 
 const jwt = require("jsonwebtoken");
 const ac = require("../../config/accesscontrol");
+
+var _ = require("lodash");
 
 module.exports = {
 
@@ -62,7 +65,7 @@ module.exports = {
 
   //get all customers list with & without pagination request
   list(req, res) {
-    console.log(req.body);
+    //console.log(req.body);
     var token = getToken(req.headers);
     const permission = ac.can(req.user.role.role_name).readAny("user");
     let limit = req.query.limit; // number of records per page
@@ -163,7 +166,7 @@ module.exports = {
 
     //get admin profile details
     getadminProfileDetail(req, res){
-      console.log('server hits - ' ,req.user.brand_id);
+      //console.log('server hits - ' ,req.user.brand_id);
       Brand.findByPk(req.user.brand_id, {
             include: [
               {
@@ -179,8 +182,8 @@ module.exports = {
             ]
         })
         .then(profile => {
-          console.log('success- ' ,req.user.user_id);
-          console.log('full values', profile);
+          //console.log('success- ' ,req.user.user_id);
+          //console.log('full values', profile);
           if (!profile) {
             return res.status(404).send({
               message: "profile Not Found"
@@ -196,7 +199,7 @@ module.exports = {
 
     //get specific customer detail
     getcustomerById(req, res) {
-      console.log('cust cont ',req);
+      //console.log('cust cont ',req);
         return Customers.findByPk(req.params.id,{
           attributes: { exclude: ['password'] },
           include: [
@@ -217,8 +220,9 @@ module.exports = {
         .catch((error) => res.status(400).send(error));
     },
 
+    //get brands total list - brands list page
     getbrandList(req, res) {
-      console.log(req.body);
+      //console.log(req.body);
       var token = getToken(req.headers);
       const permission = ac.can(req.user.role.role_name).readAny("user");
       let limit = req.query.limit; // number of records per page
@@ -265,8 +269,11 @@ module.exports = {
       }
     },
 
+    //get brand details - brands details page
     getbrandById(req, res) {
-      return Brand.findByPk(req.params.id, {
+      return Promise.all([
+        //return Brand.findByPk(req.params.id, {
+        Brand.findByPk(req.params.id, {
         include: [
           {
             model: User,
@@ -283,14 +290,25 @@ module.exports = {
             ]
           }
         ]
+      }),
+      Style.findAndCountAll({
+        where: { brand_id: req.params.id }
       })
+    ])
         .then(brand => {
           if (!brand) {
             return res.status(404).send({
               message: "Brand Not Found"
             });
           }
-          return res.status(200).send(brand);
+
+          const returnObj = _.zipObjectDeep(["brand", "stylecount"], [brand[0], brand[1]]);
+          
+          return res.status(200).send(returnObj);      
+          // res.status(200).send({
+          //   data: { response: { brand: brand } },
+          //   status: "success"
+          // })
         })
         .catch(error => res.status(400).send(error));
     },
