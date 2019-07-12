@@ -11,6 +11,9 @@ const ac = require("../../config/accesscontrol");
 
 var _ = require("lodash");
 
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
 module.exports = {
 
   login(req, res) {
@@ -225,14 +228,16 @@ module.exports = {
       //console.log(req.body);
       var token = getToken(req.headers);
       const permission = ac.can(req.user.role.role_name).readAny("user");
-      let limit = req.query.limit; // number of records per page
-      let offset = 0;
   
       if (token && permission.granted) {
         let limit = req.query.limit; // number of records per page
         let offset = 0;
         Brand
-          .findAndCountAll()
+          .findAndCountAll({where: {
+              id: {
+                [Op.ne]: 1
+              }
+            }})
           .then(data => {
             let page = req.query.page; // page number
             let pages = Math.ceil(data.count / limit);
@@ -242,6 +247,11 @@ module.exports = {
                 limit: limit,
                 offset: offset,
                 $sort: { id: 1 },
+                where: {
+                  id: {
+                    [Op.ne]: 1
+                  }
+                },
                 include: [
                   {
                     attributes: { exclude: ['password'] },

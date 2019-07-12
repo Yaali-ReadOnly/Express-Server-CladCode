@@ -1,6 +1,7 @@
 const Customer = require("../../models").Customers;
 const customerProfile = require("../../models").customerProfile;
-
+const fs = require('fs');
+const folderName = 'C:/Projects/Server/Express-Server-CladCode/public/customers/';
 module.exports = {
 
     register(req, res) {
@@ -22,7 +23,22 @@ module.exports = {
               ]
             }
         )
-            .then(customer => res.status(200).send(customer))
+            .then(customer => {
+                if(customer)
+                {
+                    dir= folderName+customer.id;
+                    try {
+                        if (!fs.existsSync(dir)){
+                            fs.mkdirSync(dir);
+                            fs.mkdirSync(dir+'/images');
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }
+                
+                res.status(200).send(customer);
+            })
             .catch(error => {
                 console.log(error);
 

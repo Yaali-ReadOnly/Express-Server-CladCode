@@ -15,7 +15,11 @@ module.exports = {
               "username": "admin@cladcode.com",
               "password": "1234",
               "profile": {
-                  "fullname": "prashanth"
+                  "fullname": "prashanth",
+                  "gender": "male",      
+                  "phone":"9176204465",
+                  "email": "prashanth@gmail.com",
+                  "address":{"street": "51st street","city": "chennai","state":"tamilnadu","country":"india","zipcode":"600041"} 
               },
               "role_id": 1
           }
