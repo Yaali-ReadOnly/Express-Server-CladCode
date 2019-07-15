@@ -9,16 +9,14 @@ const Variant = require("../../models").Variant;
 const Cat_Option = require("../../models").Cat_Option;
 const Public_Code = require("../../models").Public_Code;
 
-var _ = require("lodash");
+const Sequelize = require("sequelize");
+
+const Op = Sequelize.Op;
+const _ = require("lodash");
 
 module.exports = {
   list(req, res) {
-    console.log(
-      "req body ========",
-      req.query,
-      "brand id =======",
-      req.user.brand_id
-    );
+  
     /* return Style.findAll({ 
       where: req.query,
       limit: 5,
