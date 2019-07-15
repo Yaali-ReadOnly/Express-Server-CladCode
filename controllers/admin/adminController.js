@@ -1,4 +1,5 @@
 const Brand = require("../../models").Brand;
+const Style = require("../../models").Style;
 const User = require("../../models").User;
 const Profile = require("../../models").Profile;
 const Role = require("../../models").Role;
@@ -7,6 +8,11 @@ const customerProfile = require("../../models").customerProfile;
 
 const jwt = require("jsonwebtoken");
 const ac = require("../../config/accesscontrol");
+
+var _ = require("lodash");
+
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
 
@@ -39,9 +45,7 @@ module.exports = {
               "nodeauthsecret",
               { expiresIn: 86400 * 30 }
             );
-            jwt.verify(token, "nodeauthsecret", function(err, data) {
-              //console.log(err, data);
-            });
+            jwt.verify(token, "nodeauthsecret", function(err, data) { });
             res.json({ success: true, token: "JWT " + token });
           } else {
             res.status(401).send({
@@ -58,9 +62,13 @@ module.exports = {
     }
   },
 
+  getdashboardData(req,res){
+    res.status(200).send("No data available");
+  },
+
   //get all customers list with & without pagination request
   list(req, res) {
-    console.log(req.body);
+    //console.log(req.body);
     var token = getToken(req.headers);
     const permission = ac.can(req.user.role.role_name).readAny("user");
     let limit = req.query.limit; // number of records per page
@@ -123,29 +131,78 @@ module.exports = {
     }
   },
 
-  //get user configuration
-    getuserConfig(req, res){
-        console.log('server hits - ' ,req.user.brand_id);
+  //get admin configuration
+    getadminCompanyDetail(req, res){
+        //console.log('server hits - ' ,req.user.brand_id);
         Brand.findByPk(req.user.brand_id, {
-           
+              include: [
+                {
+                  model: User,
+                  as: "users",
+                  include: [
+                    {
+                      model: Role,
+                      as: "role"
+                    },
+                    {
+                      model: Profile,
+                      as: "profile"
+                    }
+                  ]
+                }
+              ]
           })
-          .then(profile => {
-            console.log('success- ' ,req.user.brand_id);
-            if (!profile) {
+          .then(brand => {
+            //console.log('success- ' ,req.user.brand_id);
+            //console.log('full values', brand);
+            if (!brand) {
               return res.status(404).send({
                 message: "Brand Not Found"
               });
             }
-
-            return res.status(200).send({ success: true, configData:{ brands: profile.dataValues }});
+            //return res.status(200).send({ success: true,company_detail:{brand_name: brand.dataValues.brand_name ,address: brand.users[0].profile }});
+            return res.status(200).send({ success: true,company_detail:{brand_name: brand.dataValues.brand_name,brand_id:brand.id, phone:brand.phone,address: brand.address}});
           })
           .catch(error => 
             res.status(400).send(error));
     },
 
+    //get admin profile details
+    getadminProfileDetail(req, res){
+      //console.log('server hits - ' ,req.user.brand_id);
+      Brand.findByPk(req.user.brand_id, {
+            include: [
+              {
+                model: User,
+                as: "users",
+                include: [
+                  {
+                    model: Profile,
+                    as: "profile"
+                  }
+                ]
+              }
+            ]
+        })
+        .then(profile => {
+          //console.log('success- ' ,req.user.user_id);
+          //console.log('full values', profile);
+          if (!profile) {
+            return res.status(404).send({
+              message: "profile Not Found"
+            });
+          }
+
+          //return res.status(200).send({ success: true,company_detail:{brand_name: profile.dataValues.brand_name,profile: profile}});
+          return res.status(200).send({ success: true,company_detail:{brand_name: profile.dataValues.brand_name,brand_id:profile.id, email:profile.email,user:profile.users[0]}});
+        })
+        .catch(error => 
+          res.status(400).send(error));
+    },
+
     //get specific customer detail
     getcustomerById(req, res) {
-      console.log('cust cont ',req);
+      //console.log('cust cont ',req);
         return Customers.findByPk(req.params.id,{
           attributes: { exclude: ['password'] },
           include: [
@@ -166,18 +223,21 @@ module.exports = {
         .catch((error) => res.status(400).send(error));
     },
 
+    //get brands total list - brands list page
     getbrandList(req, res) {
-      console.log(req.body);
+      //console.log(req.body);
       var token = getToken(req.headers);
       const permission = ac.can(req.user.role.role_name).readAny("user");
-      let limit = req.query.limit; // number of records per page
-      let offset = 0;
   
       if (token && permission.granted) {
         let limit = req.query.limit; // number of records per page
         let offset = 0;
         Brand
-          .findAndCountAll()
+          .findAndCountAll({where: {
+              id: {
+                [Op.ne]: 1
+              }
+            }})
           .then(data => {
             let page = req.query.page; // page number
             let pages = Math.ceil(data.count / limit);
@@ -187,6 +247,11 @@ module.exports = {
                 limit: limit,
                 offset: offset,
                 $sort: { id: 1 },
+                where: {
+                  id: {
+                    [Op.ne]: 1
+                  }
+                },
                 include: [
                   {
                     attributes: { exclude: ['password'] },
@@ -214,8 +279,11 @@ module.exports = {
       }
     },
 
+    //get brand details - brands details page
     getbrandById(req, res) {
-      return Brand.findByPk(req.params.id, {
+      return Promise.all([
+        //return Brand.findByPk(req.params.id, {
+        Brand.findByPk(req.params.id, {
         include: [
           {
             model: User,
@@ -232,14 +300,46 @@ module.exports = {
             ]
           }
         ]
+      }),
+      Style.findAndCountAll({
+        where: { brand_id: req.params.id }
       })
+    ])
         .then(brand => {
           if (!brand) {
             return res.status(404).send({
               message: "Brand Not Found"
             });
           }
-          return res.status(200).send(brand);
+
+          const returnObj = _.zipObjectDeep(["brand", "stylecount"], [brand[0], brand[1]]);
+          
+          return res.status(200).send(returnObj);      
+          // res.status(200).send({
+          //   data: { response: { brand: brand } },
+          //   status: "success"
+          // })
+        })
+        .catch(error => res.status(400).send(error));
+    },
+
+    //update admin profile details
+    updateadminProfileDetail(req, res) {
+      return Brand.findByPk(req.params.id)
+        .then(brand => {
+          if (!brand) {
+            return res.status(404).send({
+              message: "Brand Not Found"
+            });
+          }
+          return brand
+            .update({
+              brand_name: req.body.brand_name || brand.brand_name,
+              phone: req.body.phone || brand.phone,
+              address: req.body.address || brand.address
+            })
+            .then((brand) => res.status(200).send(brand))
+            .catch(error => res.status(400).send(error));
         })
         .catch(error => res.status(400).send(error));
     }

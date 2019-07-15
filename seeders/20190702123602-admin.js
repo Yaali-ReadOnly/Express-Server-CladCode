@@ -8,12 +8,18 @@ module.exports = {
     let req={
       "brand_name": "CladCode",
       "email": "admin@cladcode.com",
+      "phone":"9176204465",
+      "address":{"street":"1st complex,velachery","city":"chennai","state":"tamilnadu","zipcode":"600041","country":"india"},
       "users": [
           {
               "username": "admin@cladcode.com",
               "password": "1234",
               "profile": {
-                  "fullname": "prashanth"
+                  "fullname": "prashanth",
+                  "gender": "male",      
+                  "phone":"9176204465",
+                  "email": "prashanth@gmail.com",
+                  "address":{"street": "51st street","city": "chennai","state":"tamilnadu","country":"india","zipcode":"600041"} 
               },
               "role_id": 1
           }
@@ -24,6 +30,8 @@ module.exports = {
         {
           brand_name: req.brand_name,
           email: req.email,
+          phone: req.phone,
+          address: req.address,
           users: req.users,
           profile: req.users.profile
         },

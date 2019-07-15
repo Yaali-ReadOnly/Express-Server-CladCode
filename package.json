@@ -25,6 +25,8 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "qrcode": "^1.4.0",
-    "sequelize": "^5.9.0"
+    "sequelize": "^5.9.4",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.9.0"
   }
 }

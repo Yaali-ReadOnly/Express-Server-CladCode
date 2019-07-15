@@ -34,10 +34,12 @@ router.post('/signup', loginController.register);
 router.post('/signin', adminController.login);
 
 /* User Config  */
-router.get('/api/userConfiguration', passport.authenticate('jwt', { session: false}), adminController.getuserConfig);
+router.get('/api/usercompany', passport.authenticate('jwt', { session: false}), adminController.getadminCompanyDetail);
+router.get('/api/userprofile', passport.authenticate('jwt', { session: false}), adminController.getadminProfileDetail);
+router.post('/api/userprofile/:id', passport.authenticate('jwt', { session: false}), adminController.updateadminProfileDetail);
 
 /* dashboard */
-router.get('/api/dashboard', passport.authenticate('jwt', { session: false}), adminController.getuserConfig);
+router.get('/api/dashboard', passport.authenticate('jwt', { session: false}), adminController.getdashboardData);
 
 /* Company Router */
 router.get('/api/brand', passport.authenticate('jwt', { session: false}), adminController.getbrandList);

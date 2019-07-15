@@ -22,7 +22,7 @@ module.exports = {
         unique: true
       },
       phone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       address: {
         type: Sequelize.JSON

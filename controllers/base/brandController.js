@@ -95,7 +95,8 @@ module.exports = {
           });
         }
         return brand.update({
-          brand_name: req.body.brand_name || brand.brand_name
+          brand_name: req.body.brand_name || brand.brand_name,
+          address: req.body.address || brand.address
         })
           .then(() => res.status(200).send(brand))
           .catch(error => {
