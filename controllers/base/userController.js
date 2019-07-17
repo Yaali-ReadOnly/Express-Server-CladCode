@@ -2,6 +2,13 @@ const User = require("../../models").User;
 const Profile = require("../../models").Profile;
 const Role = require("../../models").Role;
 const Brand = require("../../models").Brand;
+const Role_Defaultviews = require("../../models").Role_Defaultviews;
+const User_Privileges = require("../../models").User_Privileges;
+
+
+var _ = require("lodash");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
   list(req, res) {
@@ -60,9 +67,55 @@ module.exports = {
       username: req.body.username,
       password: req.body.password,
       brand_id: req.body.brand_id,
-      role_id: req.body.role_id
+      role_id: req.body.role_id,
+      profile: req.body.profile
+    },
+    {
+      include: [
+            {
+              model: Profile,
+              as: "profile"
+            }
+      ]
     })
-      .then(user => res.status(201).send(user))
+      .then(user => {
+
+          //create user based privileges
+          Role_Defaultviews.findAll({
+            attributes: { exclude: ['createdAt','updatedAt'] },
+            where: {
+              role_id: user.role_id,
+              type: {
+                [Op.or]: ["brand", "common"]
+              },
+            }
+          })
+          .then(privileges =>
+            {
+              let viewsArray = [];
+              privileges.forEach((userprivileges) => {
+                viewsArray.push({
+
+                  user_id: user.id,
+                  role_id: user.role_id,
+                  parentmodule_id: userprivileges['parentmodule_id'],
+                  childmodule_id: userprivileges['moduleaccess_id'],
+                  name: userprivileges['name'],
+                  access: userprivileges['access'],
+                  default_access: userprivileges['default_access'],
+                  type: userprivileges['type']
+                })
+              })
+              User_Privileges.bulkCreate(viewsArray).then(privileges => {
+                //console.log(privileges) // ... in order to get the array of user objects
+                let data={user:user, data: viewsArray};
+                res.status(201).send(data);
+              });
+            })
+          //user privileges ends
+
+          
+      })
       .catch(error => res.status(400).send(error));
   },
 
