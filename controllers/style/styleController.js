@@ -457,7 +457,12 @@ module.exports = {
             season: req.body.season || style.season,
             spec_header_id: req.body.spec_header_id || style.spec_header_id
           })
-          .then(() => res.status(200).send(style))
+          .then(style => {
+            return res.status(200).send({
+              data: { response: style },
+              status: "success"
+            });
+          })
           .catch(error => {
             console.log(error);
             res.status(400).send(error);
