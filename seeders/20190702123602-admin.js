@@ -49,7 +49,7 @@ module.exports = {
             }
           ]
         }
-      ).then(brand => {});
+      ).then(brand => console.log('brand admin imported successfully'));
   },
 
   down: (queryInterface, Sequelize) => {

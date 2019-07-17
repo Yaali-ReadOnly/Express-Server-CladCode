@@ -12,8 +12,14 @@ module.exports = {
         brand_id: {
           type: Sequelize.INTEGER
         },
+        portal_type:{
+          type: Sequelize.STRING
+        },
         role_name: {
           type: Sequelize.STRING
+        },
+        views: {
+          type: Sequelize.JSON
         },
         createdAt: {
           allowNull: false,

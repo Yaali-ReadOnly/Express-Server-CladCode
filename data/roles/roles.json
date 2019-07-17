@@ -1,19 +1,49 @@
 {
-    "roles": [
-      {
-        "role_name": "grandadmin"
-      },
-      {
-        "role_name": "superadmin"
-      },
-      {
-        "role_name": "admin"
-      },
-      {
-        "role_name": "qa"
-      },
-      {
-        "role_name": "designer"
-      }
-    ]
-  }
+  "roles": [
+    {
+      "role_name": "grandadmin",
+      "portal_type": "adminportal",
+      "views": {"sidemenu":true,"dashboard":true,"customers":true,"brands":true,"reports":true,"settings":true}
+    },
+    {
+      "role_name": "superadmin",
+      "portal_type": "brandportal",
+      "views":{"sidemenu":true,"dashboard":true,"style":true,"qrbatch":true,"category":true,"reports":true,"settings":true}
+    },
+    {
+      "role_name": "stylecreator",
+      "portal_type": "brandportal",
+      "views":{"sidemenu":true,"dashboard":true,"style":true}
+    },
+    {
+      "role_name": "fitmaster",
+      "portal_type": "brandportal",
+      "views":{"sidemenu":true,"dashboard":true,"style":true}
+    },
+    {
+      "role_name": "qualityassurance",
+      "portal_type": "brandportal",
+      "views":{"sidemenu":true,"dashboard":true,"style":true,"qrbatch":true}
+    },
+    {
+      "role_name": "manufacturer",
+      "portal_type": "brandportal",
+      "views":{"sidemenu":true,"dashboard":true,"style":true,"qrbatch":true}
+    },
+    {
+      "role_name": "analyst",
+      "portal_type": "brandportal",
+      "views":{"sidemenu":true,"dashboard":true,"reports":true}
+    },
+    {
+      "role_name": "support",
+      "portal_type": "adminportal",
+      "views":{"sidemenu":true,"dashboard":true,"style":true,"customers":true,"brands":true,"reports":true,"settings":false}
+    },
+    {
+      "role_name": "digitalmarket",
+      "portal_type": "adminportal",
+      "views":{"sidemenu":true,"dashboard":true,"reports":true,"settings":false}
+    }
+  ]
+}

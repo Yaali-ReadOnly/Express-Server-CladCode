@@ -1,0 +1,167 @@
+{
+    "views": [
+      {
+        "role_id": 2,
+        "moduleaccess_id": 1,
+        "parentmodule_id":2,
+        "name":"style/view",
+        "type":"brand",
+        "access": true,
+        "default_access":true
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 2,
+        "parentmodule_id":2,
+        "name":"style/create",
+        "type":"brand",
+        "access": true,
+        "default_access":true
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 3,
+        "parentmodule_id":2,
+        "name":"style/attribute",
+        "type":"brand",
+        "access": true,
+        "default_access":true
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 4,
+        "parentmodule_id":2,
+        "name":"style/specsheet",
+        "type":"brand",
+        "access": false,
+        "default_access":true
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 5,
+        "parentmodule_id":2,
+        "name":"style/variant",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 6,
+        "parentmodule_id":3,
+        "name":"qrgeneration",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 7,
+        "parentmodule_id":3,
+        "name":"qrrestrict/upprove",
+        "type":"brand",
+        "access": true,
+        "default_access":true
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": true,
+        "default_access":true
+      },
+      {
+        "role_id": 2,
+        "moduleaccess_id": 9,
+        "parentmodule_id":8,
+        "name":"settings/profile",
+        "type":"brand",
+        "access": true,
+        "default_access":true
+      },
+      {
+        "role_id": 3,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 4,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 5,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 6,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 7,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 8,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 9,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 10,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      },
+      {
+        "role_id": 11,
+        "moduleaccess_id": 8,
+        "parentmodule_id":8,        
+        "name":"settings/brand",
+        "type":"brand",
+        "access": false,
+        "default_access":false
+      }
+    ]
+  }
+  
