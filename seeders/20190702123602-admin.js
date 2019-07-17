@@ -49,7 +49,7 @@ module.exports = {
             }
           ]
         }
-      ).then(brand => console.log(brand));
+      ).then(brand => {});
   },
 
   down: (queryInterface, Sequelize) => {

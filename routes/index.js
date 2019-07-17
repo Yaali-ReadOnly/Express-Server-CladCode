@@ -81,7 +81,7 @@ router.delete('/api/categories/:id', passport.authenticate('jwt', { session: fal
 router.get('/api/style', passport.authenticate('jwt', { session: false}), styleController.list);
 router.get('/api/style/:id', passport.authenticate('jwt', { session: false}), styleController.getById);
 router.post('/api/style', passport.authenticate('jwt', { session: false}), styleController.add);
-
+router.put('/api/style/:id', passport.authenticate('jwt', { session: false}), styleController.update);
 
 /* 
 
