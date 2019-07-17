@@ -16,17 +16,6 @@ const _ = require("lodash");
 
 module.exports = {
   list(req, res) {
-  
-    /* return Style.findAll({ 
-      where: req.query,
-      limit: 5,
-      offset: 2
-     })
-      .then(styles => res.status(200).send(styles))
-      .catch(error => {
-        res.status(400).send(error);
-      }); */
-
     let limit = req.query.limit; // number of records per page
     let offset = 0;
     Style.findAndCountAll({
@@ -72,7 +61,8 @@ module.exports = {
       description: req.body.description,
       sty_attributes: req.body.attributes,
       spec_gradient: req.body.specMeasurement,
-      variants: req.body.variants
+      variants: req.body.variants,
+      spec_header_id: req.body.spec_header_id
     };
 
     //Set Category Id and Brand Id
@@ -307,7 +297,10 @@ module.exports = {
           });
         }
 
-        const returnObj = _.zipObjectDeep(["style", "spec_gradient", "variants"], [style[0], style[1], style[2]]);
+        const returnObj = _.zipObjectDeep(
+          ["style", "spec_gradient", "variants"],
+          [style[0], style[1], style[2]]
+        );
 
         return res.status(200).send({
           data: { response: returnObj },
@@ -320,5 +313,159 @@ module.exports = {
           status: "error"
         })
       );
+  },
+
+  update(req, res) {
+    console.log(req.params.id);
+
+    const _bodyData = req.body;
+
+    //Update Gradient | Spec FB Map | Measurement
+    var promises = [];
+    _.forEach(_bodyData.spec_gradient, function(_gradient) {
+      promises.push(
+        Spec_Gradient.update(
+          {
+            gradient_name: _gradient.gradient_name,
+            combination_data: _gradient.combination_data,
+            col_header: _gradient.col_header
+          },
+          {
+            where: { id: _gradient.id, style_id: req.params.id }
+          }
+        )
+      );
+      _.forEach(_gradient.spec_fb_maps, function(_specFbMaps) {
+        promises.push(
+          Spec_Fb_Map.update(
+            {
+              fb_name: _specFbMaps.fb_name,
+              is_visible: _specFbMaps.is_visible
+            },
+            {
+              where: { id: _specFbMaps.id, sg_id: _gradient.id }
+            }
+          )
+        );
+
+        _.forEach(_specFbMaps.spec_measurements, function(_specMeasur) {
+          promises.push(
+            Spec_Measurement.update(
+              {
+                meas_value: _specMeasur.meas_value,
+                option_name: _specMeasur.option_name
+              },
+              {
+                where: { id: _specMeasur.id, s_fb_id: _specFbMaps.id }
+              }
+            )
+          );
+        });
+      });
+    });
+    Promise.all(promises).then(data => {
+      var errorCount = 0;
+      data = data.map(entry => {
+        if (entry[0] === 0) {
+          errorCount = errorCount + 1;
+        }
+      });
+      console.log(" spec gradient error  = ", errorCount);
+    });
+    //Update Gradient | Spec FB Map | Measurement by Id and Style Id
+
+    //Update Variant by Id and Style Id
+    var variantPromises = [];
+    _.forEach(_bodyData.variants, function(_variant) {
+      variantPromises.push(
+        Variant.update(
+          {
+            variant_name: _variant.variant_name,
+            sku: _variant.sku,
+            price: _variant.price,
+            quantity: _variant.quantity,
+            combination_data: _variant.combination_data
+          },
+          {
+            where: { id: _variant.id, style_id: req.params.id }
+          }
+        )
+      );
+    });
+
+    Promise.all(variantPromises).then(data => {
+      var errorCount = 0;
+      data = data.map(entry => {
+        if (entry[0] === 0) {
+          errorCount = errorCount + 1;
+        }
+      });
+      console.log(" Variant error  = ", errorCount);
+    });
+    //Update Variant by Id and Style Id
+
+    //Update Attributes & Options by Id and Style Id
+    var attributesPromises = [];
+    _.forEach(_bodyData.attributes, function(_attribute) {
+      attributesPromises.push(
+        Sty_Attribute.update(
+          {
+            attribute_name: _attribute.attribute_name,
+            attribute_type: _attribute.attribute_type
+          },
+          {
+            where: { id: _attribute.id, style_id: req.params.id }
+          }
+        )
+      );
+
+      _.forEach(_attribute.sty_options, function(_options) {
+        attributesPromises.push(
+          Sty_Option.update(
+            {
+              option_name: _options.option_name
+            },
+            {
+              where: { id: _options.id, sa_id: _attribute.id }
+            }
+          )
+        );
+      });
+    });
+
+    Promise.all(attributesPromises).then(data => {
+      var errorCount = 0;
+      data = data.map(entry => {
+        if (entry[0] === 0) {
+          errorCount = errorCount + 1;
+        }
+      });
+      console.log(" Attribute error  = ", errorCount);
+    });
+
+    //Update Attributes & Options by Id and Style Id
+
+    return Style.findByPk(req.params.id)
+      .then(style => {
+        if (!style) {
+          return res.status(404).send({
+            message: "style Not Found"
+          });
+        }
+        return style
+          .update({
+            season: req.body.season || style.season,
+            spec_header_id: req.body.spec_header_id || style.spec_header_id
+          })
+          .then(() => res.status(200).send(style))
+          .catch(error => {
+            console.log(error);
+            res.status(400).send(error);
+          });
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(400).send(error);
+      });
   }
 };
