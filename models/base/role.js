@@ -2,7 +2,9 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Role = sequelize.define('Role', {
-    role_name: DataTypes.STRING
+    role_name: DataTypes.STRING,
+    portal_type: DataTypes.STRING,
+    views: DataTypes.JSON
   }, {});
 
   

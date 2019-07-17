@@ -1,0 +1,66 @@
+{
+    "modules": [
+      {
+        "parent_id": 2,
+        "name": "view",
+        "access": true,
+        "default_access":true
+      },
+      {
+        "parent_id": 2,
+        "name": "create",
+        "access":true,
+        "default_access":true
+      },
+      {
+        "parent_id": 2,
+        "name": "attribute",
+        "access":true,
+        "default_access":true
+      },
+      {
+        "parent_id": 2,
+        "name": "specsheet/update",
+        "access":true,
+        "default_access":true
+      },
+      {
+        "parent_id": 2,
+        "name": "variant/update",
+        "access":true,
+        "default_access":true
+      },
+      {
+        "parent_id": 3,
+        "name": "QR generation",
+        "access":true,
+        "default_access":true
+      },
+      {
+        "parent_id": 3,
+        "name": "QR restrict-approve",
+        "access":true,
+        "default_access":true
+      },
+      {
+        "parent_id": 8,
+        "name": "settings/brand",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 8,
+        "name": "settings/profile",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 5,
+        "name": "reports/view",
+        "access":true,
+        "default_access":true
+      }
+
+    ]
+  }
+  

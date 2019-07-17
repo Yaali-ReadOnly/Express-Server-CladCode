@@ -1,0 +1,60 @@
+{
+    "modules": [
+      {
+        "name": "dashboard",
+        "type":"brand",
+        "default_access":true
+      },
+      {
+        "name": "style",
+        "type":"brand",
+        "default_access":true
+      },
+      {
+        "name": "qrbatch",
+        "type":"brand",
+        "default_access":true
+      },
+      {
+        "name": "category",
+        "type":"brand",
+        "default_access":true
+      },
+      {
+        "name": "reports",
+        "type":"common",
+        "default_access":true
+      },
+      {
+        "name": "customers",
+        "type":"admin",
+        "default_access":true
+      },
+      {
+        "name": "brands",
+        "type":"admin",
+        "default_access":true
+      },
+      {
+        "name": "settings",
+        "type":"common",
+        "default_access":true
+      },
+      {
+        "name": "sidemenu",
+        "type":"common",
+        "default_access":true
+      },
+      {
+        "name": "products",
+        "type":"mobile",
+        "default_access":true
+      },
+      {
+        "name": "scanqrcode",
+        "type":"mobile",
+        "default_access":true
+      }
+    ]
+  }
+  
