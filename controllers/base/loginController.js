@@ -69,7 +69,7 @@ module.exports = {
                 })
               })
               User_Privileges.bulkCreate(viewsArray).then(privileges => {
-                //console.log(privileges) // ... in order to get the array of user objects
+                //console.log(privileges);
               });
             })
           //user privileges ends

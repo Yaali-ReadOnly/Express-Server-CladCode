@@ -9,6 +9,7 @@ module.exports = {
       rolesArray.push({
         role_name: role['role_name'],
         portal_type: role['portal_type'],
+        views: role['views'],
         createdAt: new Date(),
         updatedAt: new Date()
       })

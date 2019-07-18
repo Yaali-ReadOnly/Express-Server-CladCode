@@ -4,7 +4,15 @@ module.exports = (sequelize, DataTypes) => {
   const Role = sequelize.define('Role', {
     role_name: DataTypes.STRING,
     portal_type: DataTypes.STRING,
-    views: DataTypes.JSON
+    views:{ 
+          type:DataTypes.STRING,
+          // get: function() {
+          //     return JSON.parse(this.getDataValue('views'));
+          // }, 
+          set: function(val) {
+              return this.setDataValue('views', JSON.stringify(val));
+          }
+    }
   }, {});
 
   

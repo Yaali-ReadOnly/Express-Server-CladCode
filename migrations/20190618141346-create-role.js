@@ -19,7 +19,7 @@ module.exports = {
           type: Sequelize.STRING
         },
         views: {
-          type: Sequelize.JSON
+          type: Sequelize.STRING
         },
         createdAt: {
           allowNull: false,
