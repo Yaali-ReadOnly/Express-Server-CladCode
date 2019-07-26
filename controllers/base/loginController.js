@@ -6,6 +6,9 @@ const Role_Defaultviews = require("../../models").Role_Defaultviews;
 const User_Privileges = require("../../models").User_Privileges;
 const UserAccessTabs = require("../../models").UserAccessTabs;
 const DefaultTabs = require('../../data/roles/tabs.json').tabs;
+
+const fs = require("fs");
+
 /* var models = require('../../models'); */
 
 const jwt = require("jsonwebtoken");
@@ -20,7 +23,13 @@ module.exports = {
       {
         brand_name: req.body.brand_name,
         email: req.body.email,
-        address: req.body.address || {street:"",city:"",state:"",zipcode:"",country:""},
+        address: req.body.address || {
+          street: "",
+          city: "",
+          state: "",
+          zipcode: "",
+          country: ""
+        },
         users: req.body.users,
         phone: req.body.phone,
         profile: req.body.users.profile
@@ -43,50 +52,64 @@ module.exports = {
       .then(brand => {
         res.status(200).send(brand);
 
-        //create user based privileges
-          Role_Defaultviews.findAll({
-            attributes: { exclude: ['createdAt','updatedAt'] },
-            where: {
-              role_id: brand.users[0].role_id,
-              type: {
-                [Op.or]: ["brand", "common"]
-              }
-            }
-          })
-          .then(brands =>
-            {
-              // const data={privileges:brands,brand:brand};
-              // res.status(200).send(data);
-              let viewsArray = [];
-              brands.forEach((roleprivileges) => {
+        //create a images folder for brand
+        const brandFolderName = "./public/images/brands/" + brand.brand_name.toLowerCase().split(' ').join('_') + "_" + brand.id;
+        try {
+          if (!fs.existsSync(brandFolderName)) {
+            fs.mkdirSync(brandFolderName);
+            fs.mkdirSync(brandFolderName + "/product");
+            fs.mkdirSync(brandFolderName + "/profile");
+            fs.mkdirSync(brandFolderName + "/others");
+          } else {
+            console.log("Already Created " + brandName);
+          }
+        } catch (err) {
+          console.error(err);
+        }
 
-                  return User_Privileges.create(
-                  {
-                    user_id:brand.users[0].id,
-                    role_id: brand.users[0].role_id,
-                    parentmodule_id: roleprivileges['parentmodule_id'],
-                    childmodule_id: roleprivileges['childmodule_id'],
-                    moduleaccess_id: roleprivileges['moduleaccess_id'],
-                    tab_id: roleprivileges['id'],
-                    name: roleprivileges['name'],
-                    access: roleprivileges['access'],
-                    default_access: roleprivileges['default_access'],
-                    type: roleprivileges['type'],
-                    view: roleprivileges['view'],
-                    create: roleprivileges['create'],
-                    edit: roleprivileges['edit'],
-                    delete:roleprivileges['delete'],
-                    all: roleprivileges['all']
-                  })
-                  .then(userprivileges => { 
-                    //console.log(userprivileges);           
-                  })
-                  .catch(error => {
-                    // res.status(400).send(error);
-                  });
-              })
+        //create user based privileges
+        Role_Defaultviews.findAll({
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+          where: {
+            role_id: brand.users[0].role_id,
+            type: {
+              [Op.or]: ["brand", "common"]
+            }
+          }
+        })
+          .then(brands => {
+            // const data={privileges:brands,brand:brand};
+            // res.status(200).send(data);
+            let viewsArray = [];
+            brands.forEach((roleprivileges) => {
+
+              return User_Privileges.create(
+                {
+                  user_id: brand.users[0].id,
+                  role_id: brand.users[0].role_id,
+                  parentmodule_id: roleprivileges['parentmodule_id'],
+                  childmodule_id: roleprivileges['childmodule_id'],
+                  moduleaccess_id: roleprivileges['moduleaccess_id'],
+                  tab_id: roleprivileges['id'],
+                  name: roleprivileges['name'],
+                  access: roleprivileges['access'],
+                  default_access: roleprivileges['default_access'],
+                  type: roleprivileges['type'],
+                  view: roleprivileges['view'],
+                  create: roleprivileges['create'],
+                  edit: roleprivileges['edit'],
+                  delete: roleprivileges['delete'],
+                  all: roleprivileges['all']
+                })
+                .then(userprivileges => {
+                  //console.log(userprivileges);           
+                })
+                .catch(error => {
+                  // res.status(400).send(error);
+                });
             })
-          //user privileges ends
+          })
+        //user privileges ends
       })
       .catch(error => {
         res.status(400).send(error);
@@ -98,10 +121,12 @@ module.exports = {
       where: {
         username: req.body.username
       },
+      attributes: { exclude: ["updatedAt", "createdAt"] },
       include: [
         {
           model: Role,
-          as: "role"
+          as: "role",
+          attributes: { exclude: ["views", "updatedAt", "createdAt"] }
         },
         {
           model: Profile,
@@ -109,12 +134,14 @@ module.exports = {
         },
         {
           model: Brand,
-          as: "brand"
+          as: "brand",
+          attributes: {
+            exclude: ["email", "phone", "address", "updatedAt", "createdAt"]
+          }
         }
       ]
     })
       .then(user => {
-        
         if (!user) {
           return res.status(401).send({
             message: "Authentication failed. User not found."
@@ -123,18 +150,19 @@ module.exports = {
         user.comparePassword(req.body.password, (err, isMatch) => {
           //console.log(user);
           if (isMatch && !err) {
+            //need to delete password in token
             var token = jwt.sign(
               JSON.parse(JSON.stringify(user)),
               "nodeauthsecret",
               { expiresIn: 86400 * 30 }
             );
-            jwt.verify(token, "nodeauthsecret", function(err, data) {
+            jwt.verify(token, "nodeauthsecret", function (err, data) {
               //console.log(err, data);
             });
 
             return Promise.all([
               User_Privileges.findAll({
-                attributes: { exclude: ['createdAt','updatedAt'] },
+                attributes: { exclude: ["createdAt", "updatedAt"] },
                 where: {
                   user_id: user.id,
                   type: {
@@ -149,28 +177,27 @@ module.exports = {
                 // ]
               })
             ])
-            .then(views => {
+              .then(views => {
                 const user_detail = {
-                  user_id:user.id, brand_id:user.brand_id, role_id:user.role_id,profile_id:user.profile.id, full_name:user.profile.fullname,
-                  email:user.username, role_name: user.role.role_name
+                  user_id: user.id, brand_id: user.brand_id, role_id: user.role_id, profile_id: user.profile.id, full_name: user.profile.fullname,
+                  email: user.username, role_name: user.role.role_name
                 };
-            
+
                 //elaborated response
                 // const returnObj = _.zipObjectDeep(["success", "token", "globalconfiguration", "brand", "profile", "role", "check"], [true, "JWT "+ token, views[0], user.brand, user.profile, user.role, user]);
 
-                const returnObj = _.zipObjectDeep(["success", "token", "globalconfiguration", "user", "role"], [true, "JWT " + token, views[0],user_detail, user.role]);
-              
-                return res.status(200).send(returnObj); 
-            });
+                const returnObj = _.zipObjectDeep(["success", "token", "globalconfiguration", "user", "role"], [true, "JWT " + token, views[0], user_detail, user.role]);
 
-          } else {
-            res.status(401).send({
-              success: false,
-              msg: "Authentication failed. Wrong password."
-            });
-          }
+                return res.status(200).send(returnObj);
+              });
+      } else {
+        res.status(401).send({
+          success: false,
+          msg: "Authentication failed. Wrong password."
         });
+      }
+});
       })
-      .catch(error => res.status(400).send(error));
+      .catch (error => res.status(400).send(error));
   }
 };

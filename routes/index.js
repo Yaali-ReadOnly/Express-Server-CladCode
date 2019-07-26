@@ -3,23 +3,28 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
+
+
 //Configuration files include.. 
 require('../config/passport')(passport);
 const ac = require('../config/accesscontrol');
 
 
-//Controllers
+//Brand Controllers
 const loginController = require('../controllers').login;
 const brandController = require('../controllers').brand;
 const profileController = require('../controllers').profile;
 const userController = require('../controllers').user;
 const roleController = require('../controllers').role;
-
 const categoryController = require('../controllers').category;
-
 const styleController = require('../controllers').style;
+const fileController = require('../controllers').file;
 
+//Admin Controllers
 const adminController = require('../controllers').admin;
+
+//Services
+const multerService = require('../services').multerService;
 
 //Permission Test
 const permission = ac.can('superadmin').deleteAny('user');
@@ -84,6 +89,15 @@ router.get('/api/style', passport.authenticate('jwt', { session: false}), styleC
 router.get('/api/style/:id', passport.authenticate('jwt', { session: false}), styleController.getById);
 router.post('/api/style', passport.authenticate('jwt', { session: false}), styleController.add);
 router.put('/api/style/:id', passport.authenticate('jwt', { session: false}), styleController.update);
+
+
+
+
+/* Variant Images*/
+router.post('/api/images/:style_id', passport.authenticate('jwt', { session: false}), multerService.multipleUpload, fileController.variantImageCreate);
+
+
+
 
 /* 
 
