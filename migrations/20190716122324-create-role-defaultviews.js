@@ -20,13 +20,31 @@ module.exports = {
       name:{
         type: Sequelize.STRING
       },
+      childmodule_id:{
+        type: Sequelize.INTEGER
+      },
       type: {
         type: Sequelize.STRING
       },
-      access: {
+      // access: {
+      //   type: Sequelize.BOOLEAN
+      // },
+      default_access: {
         type: Sequelize.BOOLEAN
       },
-      default_access: {
+      view: {
+        type: Sequelize.BOOLEAN
+      },
+      create: {
+        type: Sequelize.BOOLEAN
+      },
+      edit: {
+        type: Sequelize.BOOLEAN
+      },
+      delete: {
+        type: Sequelize.BOOLEAN
+      },
+      all: {
         type: Sequelize.BOOLEAN
       },
       createdAt: {

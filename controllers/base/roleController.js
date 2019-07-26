@@ -1,19 +1,49 @@
 const Role = require('../../models').Role;
 const User = require('../../models').User;
+const Role_Privileges = require('../../models').Role_Privileges;
+var _ = require("lodash");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
+
+  //for getting roles for user creation
   list(req, res) {
     return Role
       .findAll({
-        include: [{
-          model: User,
-          as: 'users'
-        }],
+        // include: [{
+        //   model: User,
+        //   as: 'users'
+        // }],
+        where: {
+          id: {
+            [Op.notIn]: [1, 2, 9, 10],  
+          }
+        }
       })
       .then((roles) => res.status(200).send(roles))
       .catch((error) => { res.status(400).send(error); });
   },
 
+  // for getting roles with access
+  completeroleslist(req, res) {
+    return Role
+      .findAll({
+        where: {
+          id: {
+            [Op.notIn]: [1, 2, 9, 10],  
+          }
+        },
+        // include: [{
+        //   model: Role_Privileges,
+        //   as: 'roleprivileges'
+        // }]   
+      })
+      .then((roles) => {res.status(200).send(roles); console.log(roles);})
+      .catch((error) => { res.status(400).send(error); });
+  },
+
+  //get role by id
   getById(req, res) {
     return Role
       .findById(req.params.id, {

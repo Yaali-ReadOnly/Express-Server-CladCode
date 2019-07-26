@@ -71,8 +71,6 @@ module.exports = {
     //console.log(req.body);
     var token = getToken(req.headers);
     const permission = ac.can(req.user.role.role_name).readAny("user");
-    let limit = req.query.limit; // number of records per page
-    let offset = 0;
 
     if (token && permission.granted) {
 

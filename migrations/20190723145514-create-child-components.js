@@ -1,38 +1,23 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('User_Privileges', {
+    return queryInterface.createTable('ChildComponents', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      parent_id: {
         type: Sequelize.INTEGER
       },
-      role_id: {
-        type: Sequelize.INTEGER
-      },
-      parentmodule_id: {
-        type: Sequelize.INTEGER
-      },
-      childmodule_id: {
-        type: Sequelize.INTEGER
-      },
-      moduleaccess_id: {
-        type: Sequelize.INTEGER
-      },
-      tab_id:{
+      child_id: {
         type: Sequelize.INTEGER
       },
       name: {
         type: Sequelize.STRING
       },
       access: {
-        type: Sequelize.BOOLEAN
-      },
-      default_access: {
         type: Sequelize.BOOLEAN
       },
       type: {
@@ -64,6 +49,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('User_Privileges');
+    return queryInterface.dropTable('ChildComponents');
   }
 };

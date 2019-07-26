@@ -1,27 +1,55 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     const DefaultViews = require('../data/roles/roleDefaultviews.json').views;
-    let viewsArray = []
-    DefaultViews.forEach((modules) => {
-      viewsArray.push({
+    const rolewiseTabs = require('../data/roles/roleaccesstabs.json').tabs;
+    let viewsArray = [];
 
-        role_id: modules['role_id'],
-        moduleaccess_id: modules['moduleaccess_id'],
-        parentmodule_id: modules['parentmodule_id'],
-        name: modules['name'],    
-        type: modules['type'],
-        access: modules['access'],
-        default_access: modules['default_access'],
-        createdAt: new Date(),
-        updatedAt: new Date()
+    // DefaultTabs.forEach((tab) => {
+      DefaultViews.forEach((modules) => {
+
+        viewsArray.push({
+
+          role_id: modules['role_id'],
+          moduleaccess_id: modules['moduleaccess_id'],
+          parentmodule_id: modules['parentmodule_id'],
+          childmodule_id: modules['childmodule_id'],
+          name: modules['name'],    
+          type: modules['type'],
+          default_access: modules['default_access'],
+          view:  modules['view'],
+          create:  modules['create'],
+          edit:  modules['edit'],
+          delete:  modules['delete'],
+          all:  modules['all'],
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
+      // })
+  })
+  const roledefaultResponse = await queryInterface.bulkInsert('Role_Defaultviews', viewsArray, { returning: true });
+  
+  var viewId = roledefaultResponse[0].id;
+  let tabsArray = []
+  
+      rolewiseTabs.forEach((modules) => {
+        tabsArray.push({
+          roledefaultview_id: modules['roledefaultview_id'],
+          name: modules['name'],
+          notes: modules['notes'],
+          tab_id: modules['tab_id'],
+          access: modules['access'],
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
       })
-    })
-    return queryInterface.bulkInsert('Role_Defaultviews', viewsArray);
+    
+  // const roledefaultTabs= await queryInterface.bulkInsert("RoleAccessTabs", tabsArray, {returning:true});
+  // var viewtabId= roledefaultResponse[0].id;
   },
 
-  down: (queryInterface, Sequelize) => {
+  down:async (queryInterface, Sequelize) => {
     
   }
 };

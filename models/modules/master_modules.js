@@ -7,12 +7,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Master_Modules.associate = function(models) {
     // associations can be defined here
-    Master_Modules.associate = function(models) {
       Master_Modules.hasMany(models.Child_Modules, {
         foreignKey: 'parent_id',
         as: 'childmodules'
       });
-    };
+      Master_Modules.hasMany(models.ChildComponents, {
+        foreignKey: 'parent_id',
+        as: 'childcomponents'
+      });
   };
   return Master_Modules;
 };

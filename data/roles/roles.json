@@ -13,7 +13,7 @@
     {
       "role_name": "stylecreator",
       "portal_type": "brandportal",
-      "views":["sidemenu","dashboard","style"]
+      "views":["sidemenu","dashboard","style","qrrestrict/approve"]
     },
     {
       "role_name": "fitmaster",
@@ -21,14 +21,19 @@
       "views":["sidemenu","dashboard","style"]
     },
     {
+      "role_name": "manufacturer",
+      "portal_type": "brandportal",
+      "views":["sidemenu","dashboard","style","qrbatch"]
+    },
+    {
       "role_name": "qualityassurance",
       "portal_type": "brandportal",
       "views":["sidemenu","dashboard","style","qrbatch"]
     },
     {
-      "role_name": "manufacturer",
+      "role_name": "storeexperience",
       "portal_type": "brandportal",
-      "views":["sidemenu","dashboard","style","qrbatch"]
+      "views":["sidemenu","dashboard","reports"]
     },
     {
       "role_name": "analyst",

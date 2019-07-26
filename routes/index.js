@@ -49,6 +49,7 @@ router.get('/api/user/:id', passport.authenticate('jwt', { session: false}), use
 router.post('/api/user', passport.authenticate('jwt', { session: false}), userController.add);
 router.put('/api/user/:id', passport.authenticate('jwt', { session: false}), userController.update);
 router.delete('/api/user/:id', passport.authenticate('jwt', { session: false}), userController.delete);
+router.get('/api/brand/user/:id', passport.authenticate('jwt', { session: false}), userController.getuserbybrandlist);
 
 /* Profile Router */
 router.get('/api/profile', passport.authenticate('jwt', { session: false}), profileController.list);
@@ -59,6 +60,7 @@ router.delete('/api/profile/:id', passport.authenticate('jwt', { session: false}
 
 /* User Role */
 router.get('/api/role', passport.authenticate('jwt', { session: false}), roleController.list);
+router.get('/api/role/list', passport.authenticate('jwt', { session: false}), roleController.completeroleslist);
 router.get('/api/role/:id', passport.authenticate('jwt', { session: false}), roleController.getById);
 router.post('/api/role', passport.authenticate('jwt', { session: false}), roleController.add);
 router.put('/api/role/:id', passport.authenticate('jwt', { session: false}), roleController.update);

@@ -26,6 +26,11 @@
         "default_access":true
       },
       {
+        "name": "settings",
+        "type":"common",
+        "default_access":true
+      },
+      {
         "name": "customers",
         "type":"admin",
         "default_access":true
@@ -33,11 +38,6 @@
       {
         "name": "brands",
         "type":"admin",
-        "default_access":true
-      },
-      {
-        "name": "settings",
-        "type":"common",
         "default_access":true
       },
       {

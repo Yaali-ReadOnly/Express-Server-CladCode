@@ -1,62 +1,110 @@
 {
     "modules": [
       {
-        "parent_id": 2,
-        "name": "view",
+        "parent_id": 1,
+        "name": "dashboard/view",
         "access": true,
         "default_access":true
       },
       {
         "parent_id": 2,
-        "name": "create",
+        "name": "style/list",
         "access":true,
         "default_access":true
       },
       {
         "parent_id": 2,
-        "name": "attribute",
+        "name": "style/create",
         "access":true,
         "default_access":true
       },
       {
         "parent_id": 2,
-        "name": "specsheet/update",
+        "name": "style/view",
         "access":true,
         "default_access":true
       },
       {
         "parent_id": 2,
-        "name": "variant/update",
+        "name": "style/edit",
         "access":true,
         "default_access":true
       },
       {
         "parent_id": 3,
-        "name": "QR generation",
+        "name": "qrbatch/list",
         "access":true,
         "default_access":true
       },
       {
         "parent_id": 3,
-        "name": "QR restrict-approve",
+        "name": "qrbatch/create",
         "access":true,
         "default_access":true
       },
       {
-        "parent_id": 8,
-        "name": "settings/brand",
+        "parent_id": 3,
+        "name": "qrbatch/print",
         "access":true,
         "default_access":true
       },
       { 
-        "parent_id": 8,
-        "name": "settings/profile",
+        "parent_id": 3,
+        "name": "qrbatch/edit",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 4,
+        "name": "category/list",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 4,
+        "name": "category/view",
         "access":true,
         "default_access":true
       },
       { 
         "parent_id": 5,
         "name": "reports/view",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 6,
+        "name": "settings/profile",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 6,
+        "name": "settings/brand",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 6,
+        "name": "settings/config",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 6,
+        "name": "settings/styleconfig",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 6,
+        "name": "settings/users",
+        "access":true,
+        "default_access":true
+      },
+      { 
+        "parent_id": 6,
+        "name": "settings/roles",
         "access":true,
         "default_access":true
       }

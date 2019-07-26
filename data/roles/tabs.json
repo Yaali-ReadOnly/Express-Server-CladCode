@@ -1,0 +1,35 @@
+{
+    "tabs": [
+      {
+        "name": "View",
+        "tab_id": 1001,
+        "notes":"",
+        "access":true
+      },
+      {
+        "name": "Create",        
+        "tab_id": 1002,
+        "notes":"",
+        "access":true
+      },
+      {
+        "name": "Edit",
+        "tab_id": 1003,
+        "notes":"",
+        "access":true
+      },
+      {
+        "name": "Delete",        
+        "tab_id": 1004,
+        "notes":"",
+        "access":true
+      },
+      {
+        "name": "All",
+        "tab_id": 1005,
+        "notes":"",
+        "access":true
+      }
+    ]
+  }
+  

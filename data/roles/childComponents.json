@@ -1,0 +1,139 @@
+{
+    "components": [
+      {
+        "parent_id": 1,
+        "child_id": 1,        
+        "name": "Dashboard",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      {
+        "parent_id": 2,
+        "child_id": 2,        
+        "name": "Style",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      {
+        "parent_id": 2,
+        "child_id": 3,        
+        "name": "Attribute",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      {
+        "parent_id": 2,
+        "child_id": 3,        
+        "name": "Spec Attribute",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      {
+        "parent_id": 2,
+        "child_id": 3,        
+        "name": "Variant",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      {
+        "parent_id": 2,
+        "child_id": 5,        
+        "name": "Attribute",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      {
+        "parent_id": 2,
+        "child_id": 5,        
+        "name": "Spec Attribute",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      {
+        "parent_id": 2,
+        "child_id": 5,        
+        "name": "Variant",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+
+      {
+        "parent_id": 3,
+        "child_id": 6,        
+        "name": "QRbatch",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      { 
+        "parent_id": 5,
+        "child_id": 11,        
+        "name": "Reports",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      { 
+        "parent_id": 6,
+        "child_id": 12,        
+        "name": "Profile",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      },
+      { 
+        "parent_id": 6,
+        "child_id": 13,        
+        "name": "Company",
+        "access": true,
+        "view": true,
+        "create": true,
+        "edit": true,
+        "delete": true,
+        "all": true
+      }
+
+    ]
+  }
+  
