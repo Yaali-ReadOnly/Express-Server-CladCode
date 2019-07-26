@@ -5,6 +5,8 @@ const Role = require("../../models").Role;
 const Role_Defaultviews = require("../../models").Role_Defaultviews;
 const User_Privileges = require("../../models").User_Privileges;
 
+const fs = require("fs");
+
 /* var models = require('../../models'); */
 
 const jwt = require("jsonwebtoken");
@@ -19,7 +21,13 @@ module.exports = {
       {
         brand_name: req.body.brand_name,
         email: req.body.email,
-        address: req.body.address || {street:"",city:"",state:"",zipcode:"",country:""},
+        address: req.body.address || {
+          street: "",
+          city: "",
+          state: "",
+          zipcode: "",
+          country: ""
+        },
         users: req.body.users,
         phone: req.body.phone,
         profile: req.body.users.profile
@@ -40,39 +48,51 @@ module.exports = {
       }
     )
       .then(brand => {
-          res.status(200).send(brand);
-          
-        //create user based privileges
-          Role_Defaultviews.findAll({
-            attributes: { exclude: ['createdAt','updatedAt'] },
-            where: {
-              role_id: brand.users[0].role_id,
-              type: {
-                [Op.or]: ["brand", "common"]
-              },
-            }
-          })
-          .then(privileges =>
-            {
-              let viewsArray = [];
-              privileges.forEach((userprivileges) => {
-                viewsArray.push({
+        res.status(200).send(brand);
 
-                  user_id:brand.users[0].id,
-                  role_id: brand.users[0].role_id,
-                  parentmodule_id: userprivileges['parentmodule_id'],
-                  childmodule_id: userprivileges['moduleaccess_id'],
-                  name: userprivileges['name'],
-                  access: userprivileges['access'],
-                  default_access: userprivileges['default_access'],
-                  type: userprivileges['type']
-                })
-              })
-              User_Privileges.bulkCreate(viewsArray).then(privileges => {
-                //console.log(privileges);
-              });
-            })
-          //user privileges ends
+        //create a images folder for brand
+        const brandFolderName = "./public/images/brands/" +  brand.brand_name.toLowerCase().split(' ').join('_') + "_" +  brand.id;
+        try {
+          if (!fs.existsSync(brandFolderName)) {
+            fs.mkdirSync(brandFolderName);
+            fs.mkdirSync(brandFolderName + "/product");
+            fs.mkdirSync(brandFolderName + "/profile");
+            fs.mkdirSync(brandFolderName + "/others");
+          } else {
+            console.log("Already Created " + brandName);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+
+        //create user based privileges
+        Role_Defaultviews.findAll({
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+          where: {
+            role_id: brand.users[0].role_id,
+            type: {
+              [Op.or]: ["brand", "common"]
+            }
+          }
+        }).then(privileges => {
+          let viewsArray = [];
+          privileges.forEach(userprivileges => {
+            viewsArray.push({
+              user_id: brand.users[0].id,
+              role_id: brand.users[0].role_id,
+              parentmodule_id: userprivileges["parentmodule_id"],
+              childmodule_id: userprivileges["moduleaccess_id"],
+              name: userprivileges["name"],
+              access: userprivileges["access"],
+              default_access: userprivileges["default_access"],
+              type: userprivileges["type"]
+            });
+          });
+          User_Privileges.bulkCreate(viewsArray).then(privileges => {
+            //console.log(privileges);
+          });
+        });
+        //user privileges ends
       })
       .catch(error => {
         res.status(400).send(error);
@@ -84,15 +104,23 @@ module.exports = {
       where: {
         username: req.body.username
       },
+      attributes: { exclude: ["updatedAt", "createdAt"] },
       include: [
         {
           model: Role,
-          as: "role"
+          as: "role",
+          attributes: { exclude: ["views", "updatedAt", "createdAt"] }
+        },
+        {
+          model: Brand,
+          as: "brand",
+          attributes: {
+            exclude: ["email", "phone", "address", "updatedAt", "createdAt"]
+          }
         }
       ]
     })
       .then(user => {
-        
         if (!user) {
           return res.status(401).send({
             message: "Authentication failed. User not found."
@@ -101,6 +129,7 @@ module.exports = {
         user.comparePassword(req.body.password, (err, isMatch) => {
           //console.log(user);
           if (isMatch && !err) {
+            //need to delete password in token
             var token = jwt.sign(
               JSON.parse(JSON.stringify(user)),
               "nodeauthsecret",
@@ -112,21 +141,22 @@ module.exports = {
 
             return Promise.all([
               User_Privileges.findAll({
-                attributes: { exclude: ['createdAt','updatedAt'] },
+                attributes: { exclude: ["createdAt", "updatedAt"] },
                 where: {
                   role_id: user.id,
                   type: {
                     [Op.or]: ["brand", "common"]
-                  },
+                  }
                 }
               })
-            ])
-            .then(views => {
-              const returnObj = _.zipObjectDeep(["success", "token", "globalconfiguration", "role"], [true, "JWT " + token, views[0], user.role]);
-              
-              return res.status(200).send(returnObj); 
-            });
+            ]).then(views => {
+              const returnObj = _.zipObjectDeep(
+                ["success", "token", "globalconfiguration", "role"],
+                [true, "JWT " + token, views[0], user.role]
+              );
 
+              return res.status(200).send(returnObj);
+            });
           } else {
             res.status(401).send({
               success: false,

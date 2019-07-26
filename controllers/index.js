@@ -7,6 +7,7 @@ const user = require('./base/userController');
 const category = require('./category/categoryController');
 
 const style = require('./style/styleController');
+const file = require('./files/fileController');
 
 const admin = require('./admin/adminController');
 const customer = require('./mobile/customerController');
@@ -22,5 +23,6 @@ module.exports = {
   style,
   admin,
   customer,
-  custlogin
+  custlogin,
+  file
 };

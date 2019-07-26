@@ -4,6 +4,7 @@ const JwtStrategy = require('passport-jwt').Strategy,
 // load up the user model
 const User = require('../models').User;
 const Role = require('../models').Role;
+const Brand = require('../models').Brand;
 
 module.exports = function(passport) {
   const opts = {
@@ -17,6 +18,10 @@ module.exports = function(passport) {
           {
             model: Role,
             as: "role"
+          },
+          {
+            model: Brand,
+            as: "brand"
           }
         ]
       })
